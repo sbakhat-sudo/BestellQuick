@@ -1,4 +1,4 @@
--- BestellQuick — Row Level Security policies
+-- Ordine — Row Level Security policies
 --
 -- Design notes:
 -- * Tables are owned by the migration role (typically `postgres`), and

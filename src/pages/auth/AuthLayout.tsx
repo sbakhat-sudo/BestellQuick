@@ -8,9 +8,9 @@ export function AuthLayout({ title, children }: { title: string; children: React
       <div className="mx-auto flex w-full max-w-sm flex-1 flex-col justify-center gap-6">
         <div className="flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2 text-lg font-bold text-neutral-900">
-            {/* Logo placeholder — swap for the BestellQuick logo file once provided */}
-            <span className="flex size-8 items-center justify-center rounded-lg bg-brand-600 text-white">B</span>
-            BestellQuick
+            {/* Logo placeholder — swap for the Ordine logo file once provided */}
+            <span className="flex size-8 items-center justify-center rounded-lg bg-brand-600 text-white">O</span>
+            Ordine
           </Link>
           <LanguageToggle />
         </div>

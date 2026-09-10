@@ -26,7 +26,7 @@ i18n
     detection: {
       order: ['localStorage', 'navigator'],
       caches: ['localStorage'],
-      lookupLocalStorage: 'bestellquick_lang',
+      lookupLocalStorage: 'ordine_lang',
     },
   })
 

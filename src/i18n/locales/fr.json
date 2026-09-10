@@ -1,6 +1,6 @@
 {
   "app": {
-    "name": "BestellQuick",
+    "name": "Ordine",
     "tagline": "Commandez directement, sans commission"
   },
   "common": {
@@ -44,7 +44,7 @@
   },
   "landing": {
     "heroTitle": "Gérez vos commandes en ligne sans commission",
-    "heroSubtitle": "BestellQuick permet à votre restaurant de recevoir des commandes via QR code ou lien, sans payer les commissions des plateformes de livraison classiques.",
+    "heroSubtitle": "Ordine permet à votre restaurant de recevoir des commandes via QR code ou lien, sans payer les commissions des plateformes de livraison classiques.",
     "ctaSignup": "Créer mon restaurant",
     "ctaLogin": "Se connecter",
     "featuresTitle": "Tout ce qu'il faut pour gérer vos commandes",
