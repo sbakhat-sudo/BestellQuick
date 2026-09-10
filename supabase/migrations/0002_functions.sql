@@ -1,4 +1,4 @@
--- Ordine — RPC functions & triggers
+-- BestellQuick — RPC functions & triggers
 --
 -- Order placement and restaurant onboarding are implemented as SECURITY
 -- DEFINER functions rather than plain table INSERTs from the client. This

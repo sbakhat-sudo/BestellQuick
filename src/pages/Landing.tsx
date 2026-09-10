@@ -14,8 +14,8 @@ export default function Landing() {
       <header className="border-b border-neutral-200 bg-white">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
           <div className="flex items-center gap-2 text-lg font-bold text-neutral-900">
-            {/* Logo placeholder — swap for the provided Ordine logo asset */}
-            <span className="flex size-8 items-center justify-center rounded-lg bg-brand-600 text-white">O</span>
+            {/* Logo placeholder — swap for the provided BestellQuick logo asset */}
+            <span className="flex size-8 items-center justify-center rounded-lg bg-brand-600 text-white">B</span>
             {t('app.name')}
           </div>
           <div className="flex items-center gap-3">
