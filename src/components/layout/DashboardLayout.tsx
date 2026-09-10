@@ -43,8 +43,8 @@ function NavLinks({ onNavigate }: { onNavigate?: () => void }) {
 
 function LogoMark() {
   return (
-    // Logo placeholder — replace with the provided BestellQuick logo asset
-    <span className="flex size-8 items-center justify-center rounded-lg bg-brand-600 text-sm font-bold text-white">B</span>
+    // Logo placeholder — replace with the provided Ordine logo asset
+    <span className="flex size-8 items-center justify-center rounded-lg bg-brand-600 text-sm font-bold text-white">O</span>
   )
 }
 
@@ -68,7 +68,7 @@ export function DashboardLayout(): ReactNode {
             ☰
           </button>
           <LogoMark />
-          <span className="font-bold text-neutral-900">BestellQuick</span>
+          <span className="font-bold text-neutral-900">Ordine</span>
           <Badge tone={restaurant.is_open ? 'success' : 'danger'} className="hidden sm:inline-flex">
             {restaurant.is_open ? t('dashboard.overview.open') : t('dashboard.overview.closed')}
           </Badge>
@@ -98,7 +98,7 @@ export function DashboardLayout(): ReactNode {
             >
               <div className="mb-3 flex items-center gap-2 px-1">
                 <LogoMark />
-                <span className="font-bold">BestellQuick</span>
+                <span className="font-bold">Ordine</span>
               </div>
               <NavLinks onNavigate={() => setMobileOpen(false)} />
               <div className="mt-3 px-1">

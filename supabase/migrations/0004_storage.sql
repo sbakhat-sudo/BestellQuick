@@ -1,4 +1,4 @@
--- BestellQuick — Storage bucket for restaurant/menu/offer images
+-- Ordine — Storage bucket for restaurant/menu/offer images
 --
 -- Single public bucket, objects namespaced as:
 --   restaurant-assets/{restaurant_id}/logo/...
