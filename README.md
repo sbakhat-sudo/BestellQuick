@@ -1,4 +1,4 @@
-# Vitefait
+# Vite-Fait
 
 Plateforme SaaS permettant à un restaurant de gérer ses commandes en ligne
 (QR code + lien direct) sans payer de commission sur les ventes. Le

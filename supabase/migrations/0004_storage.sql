@@ -1,4 +1,4 @@
--- Vitefait — Storage bucket for restaurant/menu/offer images
+-- Vite-Fait — Storage bucket for restaurant/menu/offer images
 --
 -- Single public bucket, objects namespaced as:
 --   restaurant-assets/{restaurant_id}/logo/...

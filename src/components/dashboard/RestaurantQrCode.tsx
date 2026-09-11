@@ -15,7 +15,7 @@ export function RestaurantQrCode({ slug }: { slug: string }) {
     const canvas = canvasRef.current?.querySelector('canvas')
     if (!canvas) return
     const link = document.createElement('a')
-    link.download = `vitefait-qr-${slug}.png`
+    link.download = `vite-fait-qr-${slug}.png`
     link.href = canvas.toDataURL('image/png')
     link.click()
   }

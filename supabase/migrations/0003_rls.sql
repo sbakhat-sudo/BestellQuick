@@ -1,4 +1,4 @@
--- Vitefait — Row Level Security policies
+-- Vite-Fait — Row Level Security policies
 --
 -- Design notes:
 -- * Tables are owned by the migration role (typically `postgres`), and
