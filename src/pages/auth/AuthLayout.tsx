@@ -7,10 +7,9 @@ export function AuthLayout({ title, children }: { title: string; children: React
     <div className="flex min-h-screen flex-col bg-neutral-50 px-4 py-8">
       <div className="mx-auto flex w-full max-w-sm flex-1 flex-col justify-center gap-6">
         <div className="flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2 text-lg font-bold text-neutral-900">
-            {/* Logo placeholder — swap for the Vitefait logo file once provided */}
-            <span className="flex size-8 items-center justify-center rounded-lg bg-brand-600 text-white">V</span>
-            Vitefait
+          <Link to="/" className="flex items-center gap-2 text-neutral-900">
+            <img src="/logo.png" alt="Vite-Fait" className="size-14 shrink-0 object-contain" />
+            <span className="font-brand text-xl font-bold tracking-tight">Vite-Fait</span>
           </Link>
           <LanguageToggle />
         </div>

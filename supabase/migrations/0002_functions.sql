@@ -1,4 +1,4 @@
--- Vitefait — RPC functions & triggers
+-- Vite-Fait — RPC functions & triggers
 --
 -- Order placement and restaurant onboarding are implemented as SECURITY
 -- DEFINER functions rather than plain table INSERTs from the client. This

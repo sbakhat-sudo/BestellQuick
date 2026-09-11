@@ -1,4 +1,4 @@
--- Vitefait — core schema
+-- Vite-Fait — core schema
 -- Enums, tables, indexes. RLS is enabled here but policies live in 0003_rls.sql
 -- so this file focuses purely on structure.
 

@@ -42,10 +42,7 @@ function NavLinks({ onNavigate }: { onNavigate?: () => void }) {
 }
 
 function LogoMark() {
-  return (
-    // Logo placeholder — replace with the provided Vitefait logo asset
-    <span className="flex size-8 items-center justify-center rounded-lg bg-brand-600 text-sm font-bold text-white">V</span>
-  )
+  return <img src="/logo.png" alt="Vite-Fait" className="size-14 shrink-0 object-contain" />
 }
 
 export function DashboardLayout(): ReactNode {
@@ -68,7 +65,7 @@ export function DashboardLayout(): ReactNode {
             ☰
           </button>
           <LogoMark />
-          <span className="font-bold text-neutral-900">Vitefait</span>
+          <span className="font-brand text-xl font-bold tracking-tight text-neutral-900">Vite-Fait</span>
           <Badge tone={restaurant.is_open ? 'success' : 'danger'} className="hidden sm:inline-flex">
             {restaurant.is_open ? t('dashboard.overview.open') : t('dashboard.overview.closed')}
           </Badge>
@@ -98,7 +95,7 @@ export function DashboardLayout(): ReactNode {
             >
               <div className="mb-3 flex items-center gap-2 px-1">
                 <LogoMark />
-                <span className="font-bold">Vitefait</span>
+                <span className="font-brand text-xl font-bold tracking-tight">Vite-Fait</span>
               </div>
               <NavLinks onNavigate={() => setMobileOpen(false)} />
               <div className="mt-3 px-1">
