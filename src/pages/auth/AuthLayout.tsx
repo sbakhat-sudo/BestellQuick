@@ -8,6 +8,7 @@ export function AuthLayout({ title, children }: { title: string; children: React
       <div className="mx-auto flex w-full max-w-sm flex-1 flex-col justify-center gap-6">
         <div className="flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2 text-neutral-900">
+            <img src="/logo.png" alt="Vite-Fait" className="size-14 shrink-0 object-contain" />
             <span className="font-brand text-xl font-bold tracking-tight">Vite-Fait</span>
           </Link>
           <LanguageToggle />
