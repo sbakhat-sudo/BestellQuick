@@ -13,9 +13,9 @@ export default function Landing() {
     <div className="min-h-screen bg-neutral-50">
       <header className="border-b border-neutral-200 bg-white">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
-          <div className="flex items-center gap-2 text-lg font-bold text-neutral-900">
-            <img src="/logo.jpg" alt="Vite-Fait" className="size-11 shrink-0 object-contain" />
-            {t('app.name')}
+          <div className="flex items-center gap-2 text-neutral-900">
+            <img src="/logo.png" alt="Vite-Fait" className="size-14 shrink-0 object-contain" />
+            <span className="font-brand text-xl font-bold tracking-tight">{t('app.name')}</span>
           </div>
           <div className="flex items-center gap-3">
             <LanguageToggle />
