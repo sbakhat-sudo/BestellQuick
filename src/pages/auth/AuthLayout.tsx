@@ -7,9 +7,9 @@ export function AuthLayout({ title, children }: { title: string; children: React
     <div className="flex min-h-screen flex-col bg-neutral-50 px-4 py-8">
       <div className="mx-auto flex w-full max-w-sm flex-1 flex-col justify-center gap-6">
         <div className="flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2 text-neutral-900">
-            <img src="/logo.png" alt="Vite-Fait" className="size-14 shrink-0 object-contain" />
-            <span className="font-brand text-xl font-bold tracking-tight">Vite-Fait</span>
+          <Link to="/" className="flex items-center gap-1.5 text-neutral-900">
+            <img src="/logo.png" alt="Vite-Fait" className="size-11 shrink-0 object-contain" />
+            <span className="font-brand text-2xl font-extrabold tracking-tight">Vite-Fait</span>
           </Link>
           <LanguageToggle />
         </div>
