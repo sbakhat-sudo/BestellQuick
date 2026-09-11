@@ -2,7 +2,7 @@
 # Run `supabase start` after installing the Supabase CLI, then
 # `supabase db push` to apply the migrations in supabase/migrations/.
 
-project_id = "bestellquick"
+project_id = "vitefait"
 
 [api]
 enabled = true
