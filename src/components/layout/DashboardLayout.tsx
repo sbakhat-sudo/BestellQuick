@@ -41,6 +41,10 @@ function NavLinks({ onNavigate }: { onNavigate?: () => void }) {
   )
 }
 
+function LogoMark() {
+  return <img src="/logo.png" alt="Vite-Fait" className="size-11 shrink-0 object-contain" />
+}
+
 export function DashboardLayout(): ReactNode {
   const { t } = useTranslation()
   const { signOut } = useAuth()
@@ -60,7 +64,10 @@ export function DashboardLayout(): ReactNode {
           >
             ☰
           </button>
-          <span className="font-brand text-xl font-bold tracking-tight text-neutral-900">Vite-Fait</span>
+          <div className="flex items-center gap-1.5">
+            <LogoMark />
+            <span className="font-brand text-2xl font-extrabold tracking-tight text-neutral-900">Vite-Fait</span>
+          </div>
           <Badge tone={restaurant.is_open ? 'success' : 'danger'} className="hidden sm:inline-flex">
             {restaurant.is_open ? t('dashboard.overview.open') : t('dashboard.overview.closed')}
           </Badge>
@@ -88,8 +95,9 @@ export function DashboardLayout(): ReactNode {
               className="h-full w-64 bg-white p-3 shadow-lg"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="mb-3 flex items-center gap-2 px-1">
-                <span className="font-brand text-xl font-bold tracking-tight">Vite-Fait</span>
+              <div className="mb-3 flex items-center gap-1.5 px-1">
+                <LogoMark />
+                <span className="font-brand text-2xl font-extrabold tracking-tight">Vite-Fait</span>
               </div>
               <NavLinks onNavigate={() => setMobileOpen(false)} />
               <div className="mt-3 px-1">
