@@ -97,7 +97,7 @@ export function DashboardLayout(): ReactNode {
             >
               <div className="mb-3 flex items-center gap-1.5 px-1">
                 <LogoMark />
-                <span className="font-brand text-2xl font-extrabold tracking-tight">Vite-Fait</span>
+                <span className="font-brand text-2xl font-extrabold tracking-tight text-neutral-900">Vite-Fait</span>
               </div>
               <NavLinks onNavigate={() => setMobileOpen(false)} />
               <div className="mt-3 px-1">
