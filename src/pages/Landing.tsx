@@ -14,8 +14,7 @@ export default function Landing() {
       <header className="border-b border-neutral-200 bg-white">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
           <div className="flex items-center gap-2 text-lg font-bold text-neutral-900">
-            {/* Logo placeholder — swap for the provided Vitefait logo asset */}
-            <span className="flex size-8 items-center justify-center rounded-lg bg-brand-600 text-white">V</span>
+            <img src="/logo.jpg" alt="Vitefait" className="size-8 rounded-lg object-cover" />
             {t('app.name')}
           </div>
           <div className="flex items-center gap-3">

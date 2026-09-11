@@ -14,7 +14,7 @@ export function PublicHeader({ restaurant }: { restaurant: Restaurant }) {
           {restaurant.logo_url ? (
             <img src={restaurant.logo_url} alt={restaurant.name} className="size-12 rounded-full object-cover" />
           ) : (
-            // Logo placeholder — replace with the provided Vitefait / restaurant logo
+            // Fallback avatar until this restaurant uploads its own logo (Settings)
             <span className="flex size-12 items-center justify-center rounded-full bg-brand-600 text-lg font-bold text-white">
               {restaurant.name.charAt(0).toUpperCase()}
             </span>

@@ -42,10 +42,7 @@ function NavLinks({ onNavigate }: { onNavigate?: () => void }) {
 }
 
 function LogoMark() {
-  return (
-    // Logo placeholder — replace with the provided Vitefait logo asset
-    <span className="flex size-8 items-center justify-center rounded-lg bg-brand-600 text-sm font-bold text-white">V</span>
-  )
+  return <img src="/logo.jpg" alt="Vitefait" className="size-8 rounded-lg object-cover" />
 }
 
 export function DashboardLayout(): ReactNode {

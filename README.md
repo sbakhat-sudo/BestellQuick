@@ -106,10 +106,6 @@ Le schéma complet (tables, enums, index) est dans
 
 ## Ce qui reste à affiner
 
-- **Logo** : un emplacement est prévu partout (header dashboard, page
-  publique, favicon, landing) mais utilise un badge "B" en attendant le
-  fichier logo réel — voir les commentaires `Logo placeholder` dans le code
-  pour les points d'intégration exacts.
 - **Provisioning Supabase** : aucun projet Supabase n'était disponible dans
   cet environnement ; les migrations sont prêtes mais n'ont pas été
   appliquées à un projet réel. À faire avant la mise en production.
