@@ -12,13 +12,19 @@ export function ImageUpload({ label, value, onUpload }: ImageUploadProps) {
   const { t } = useTranslation()
   const inputRef = useRef<HTMLInputElement>(null)
   const [uploading, setUploading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
   const onChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
     if (!file) return
     setUploading(true)
+    setError(null)
     try {
       await onUpload(file)
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.error('Image upload failed:', err)
+      setError(err instanceof Error ? err.message : t('common.error'))
     } finally {
       setUploading(false)
       if (inputRef.current) inputRef.current.value = ''
@@ -41,6 +47,11 @@ export function ImageUpload({ label, value, onUpload }: ImageUploadProps) {
         </Button>
         <input ref={inputRef} type="file" accept="image/*" className="hidden" onChange={onChange} />
       </div>
+      {error && (
+        <p role="alert" className="text-xs text-red-600">
+          {error}
+        </p>
+      )}
     </div>
   )
 }
