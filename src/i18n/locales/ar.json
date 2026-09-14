@@ -91,7 +91,11 @@
       "linkTitle": "رابط الطلب الخاص بك",
       "planTitle": "باقتك",
       "recentOrders": "أحدث الطلبات",
-      "noOrdersYet": "لا توجد طلبات بعد."
+      "noOrdersYet": "لا توجد طلبات بعد.",
+      "searchPlaceholder": "بحث عن طلبات، عملاء...",
+      "calendarTitle": "التقويم",
+      "ordersUsedThisMonth": "طلبات مستخدمة هذا الشهر",
+      "unlimitedOrders": "طلبات غير محدودة"
     }
   },
   "menu": {
