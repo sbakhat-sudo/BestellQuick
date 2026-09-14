@@ -4,7 +4,6 @@ import { Modal } from '@/components/ui/Modal'
 import { Input, Textarea } from '@/components/ui/Input'
 import { Button } from '@/components/ui/Button'
 import { ImageUpload } from '@/components/ui/ImageUpload'
-import { useCurrentRestaurant } from '@/context/RestaurantContext'
 import { uploadRestaurantAsset } from '@/lib/storage'
 import type { Offer } from '@/types/database.types'
 import type { OfferInput } from '@/hooks/useOffers'
@@ -20,7 +19,6 @@ const today = () => new Date().toISOString().slice(0, 10)
 
 export function OfferFormModal({ open, onClose, onSubmit, initial }: OfferFormModalProps) {
   const { t } = useTranslation()
-  const restaurant = useCurrentRestaurant()
   const [title, setTitle] = useState(initial?.title ?? '')
   const [description, setDescription] = useState(initial?.description ?? '')
   const [price, setPrice] = useState(initial?.price?.toString() ?? '')
@@ -53,7 +51,7 @@ export function OfferFormModal({ open, onClose, onSubmit, initial }: OfferFormMo
         <ImageUpload
           label={t('common.photo')}
           value={photoUrl}
-          onUpload={async (file) => setPhotoUrl(await uploadRestaurantAsset(restaurant.id, 'offers', file))}
+          onUpload={async (file) => setPhotoUrl(await uploadRestaurantAsset('offers', file))}
         />
         <Input label={t('offers.offerTitle')} required value={title} onChange={(e) => setTitle(e.target.value)} />
         <Textarea label={t('offers.description')} rows={3} value={description} onChange={(e) => setDescription(e.target.value)} />

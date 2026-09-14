@@ -5,7 +5,6 @@ import { Input, Textarea } from '@/components/ui/Input'
 import { Select } from '@/components/ui/Select'
 import { Button } from '@/components/ui/Button'
 import { ImageUpload } from '@/components/ui/ImageUpload'
-import { useCurrentRestaurant } from '@/context/RestaurantContext'
 import { uploadRestaurantAsset } from '@/lib/storage'
 import type { MenuItem, MenuItemStatus } from '@/types/database.types'
 import type { MenuItemInput } from '@/hooks/useMenuItems'
@@ -19,7 +18,6 @@ interface MenuItemFormModalProps {
 
 export function MenuItemFormModal({ open, onClose, onSubmit, initial }: MenuItemFormModalProps) {
   const { t } = useTranslation()
-  const restaurant = useCurrentRestaurant()
   const [name, setName] = useState(initial?.name ?? '')
   const [description, setDescription] = useState(initial?.description ?? '')
   const [price, setPrice] = useState(initial?.price?.toString() ?? '')
@@ -52,7 +50,7 @@ export function MenuItemFormModal({ open, onClose, onSubmit, initial }: MenuItem
         <ImageUpload
           label={t('common.photo')}
           value={photoUrl}
-          onUpload={async (file) => setPhotoUrl(await uploadRestaurantAsset(restaurant.id, 'menu', file))}
+          onUpload={async (file) => setPhotoUrl(await uploadRestaurantAsset('menu', file))}
         />
         <Input label={t('menu.name')} required value={name} onChange={(e) => setName(e.target.value)} />
         <Textarea

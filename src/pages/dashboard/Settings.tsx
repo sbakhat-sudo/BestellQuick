@@ -43,14 +43,14 @@ export default function Settings() {
                 label={t('settings.logo')}
                 value={restaurant.logo_url}
                 onUpload={async (file) => {
-                  await updateRestaurant.mutateAsync({ logo_url: await uploadRestaurantAsset(restaurant.id, 'logo', file) })
+                  await updateRestaurant.mutateAsync({ logo_url: await uploadRestaurantAsset('logo', file) })
                 }}
               />
               <ImageUpload
                 label={t('settings.coverPhoto')}
                 value={restaurant.cover_photo_url}
                 onUpload={async (file) => {
-                  await updateRestaurant.mutateAsync({ cover_photo_url: await uploadRestaurantAsset(restaurant.id, 'cover', file) })
+                  await updateRestaurant.mutateAsync({ cover_photo_url: await uploadRestaurantAsset('cover', file) })
                 }}
               />
             </div>
