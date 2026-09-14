@@ -1,6 +1,6 @@
-import { type ReactNode, useState } from 'react'
+import { type FormEvent, type ReactNode, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { NavLink, Outlet } from 'react-router-dom'
+import { NavLink, Outlet, useNavigate } from 'react-router-dom'
 import clsx from 'clsx'
 import { useAuth } from '@/context/AuthContext'
 import { useCurrentRestaurant } from '@/context/RestaurantContext'
@@ -45,15 +45,65 @@ function LogoMark() {
   return <img src="/logo.png" alt="Vite-Fait" className="size-11 shrink-0 object-contain" />
 }
 
+function RestaurantFooter() {
+  const { t } = useTranslation()
+  const restaurant = useCurrentRestaurant()
+  const planLabel = t(`settings.plan${restaurant.plan[0].toUpperCase()}${restaurant.plan.slice(1)}`)
+
+  return (
+    <div className="flex items-center gap-2.5 border-t border-neutral-100 px-1 pt-3">
+      <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-brand-600 text-sm font-bold text-white">
+        {restaurant.name.charAt(0).toUpperCase()}
+      </span>
+      <div className="min-w-0">
+        <p className="truncate text-sm font-semibold text-neutral-900">{restaurant.name}</p>
+        <p className="truncate text-xs text-neutral-500">
+          {t('nav.settings')} · {planLabel}
+        </p>
+      </div>
+    </div>
+  )
+}
+
+function SearchIcon() {
+  return (
+    <svg viewBox="0 0 20 20" fill="none" className="size-4 text-neutral-400" aria-hidden="true">
+      <circle cx="9" cy="9" r="6" stroke="currentColor" strokeWidth="1.5" />
+      <path d="M14 14L18 18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+    </svg>
+  )
+}
+
+function SettingsIcon() {
+  return (
+    <svg viewBox="0 0 20 20" fill="none" className="size-5" aria-hidden="true">
+      <circle cx="10" cy="10" r="2.5" stroke="currentColor" strokeWidth="1.5" />
+      <path
+        d="M10 2.5v2M10 15.5v2M17.5 10h-2M4.5 10h-2M15.36 4.64l-1.41 1.41M6.05 13.95l-1.41 1.41M15.36 15.36l-1.41-1.41M6.05 6.05L4.64 4.64"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+    </svg>
+  )
+}
+
 export function DashboardLayout(): ReactNode {
   const { t } = useTranslation()
   const { signOut } = useAuth()
   const restaurant = useCurrentRestaurant()
+  const navigate = useNavigate()
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [search, setSearch] = useState('')
+
+  const onSearchSubmit = (e: FormEvent) => {
+    e.preventDefault()
+    navigate(search.trim() ? `/dashboard/orders?q=${encodeURIComponent(search.trim())}` : '/dashboard/orders')
+  }
 
   return (
     <div className="min-h-screen bg-neutral-50">
-      <header className="sticky top-0 z-30 flex items-center justify-between border-b border-neutral-200 bg-white px-4 py-3 sm:px-6">
+      <header className="sticky top-0 z-30 flex items-center justify-between gap-3 border-b border-neutral-200 bg-white px-4 py-3 sm:px-6">
         <div className="flex items-center gap-3">
           <button
             type="button"
@@ -72,37 +122,60 @@ export function DashboardLayout(): ReactNode {
             {restaurant.is_open ? t('dashboard.overview.open') : t('dashboard.overview.closed')}
           </Badge>
         </div>
+
+        <form onSubmit={onSearchSubmit} className="hidden max-w-md flex-1 md:block">
+          <label className="relative block">
+            <span className="absolute inset-y-0 start-3 flex items-center">
+              <SearchIcon />
+            </span>
+            <input
+              type="search"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder={t('dashboard.overview.searchPlaceholder')}
+              className="w-full rounded-full border border-neutral-200 bg-neutral-50 py-2 ps-9 pe-4 text-sm text-neutral-700 placeholder:text-neutral-400 focus:border-brand-400 focus:bg-white"
+            />
+          </label>
+        </form>
+
         <div className="flex items-center gap-3">
-          <LanguageToggle className="hidden sm:inline-flex" />
-          <button
-            type="button"
-            onClick={signOut}
-            className="text-sm font-medium text-neutral-600 hover:text-neutral-900"
+          <NavLink
+            to="/dashboard/settings"
+            aria-label={t('nav.settings')}
+            className="rounded-full p-2 text-neutral-500 hover:bg-neutral-100 hover:text-neutral-700"
           >
+            <SettingsIcon />
+          </NavLink>
+          <LanguageToggle className="hidden sm:inline-flex" />
+          <button type="button" onClick={signOut} className="text-sm font-medium text-neutral-600 hover:text-neutral-900">
             {t('common.logout')}
           </button>
         </div>
       </header>
 
       <div className="mx-auto flex max-w-7xl">
-        <aside className="sticky top-[57px] hidden h-[calc(100svh-57px)] w-56 shrink-0 border-r border-neutral-200 bg-white p-3 md:block">
+        <aside className="sticky top-[57px] hidden h-[calc(100svh-57px)] w-56 shrink-0 flex-col justify-between border-r border-neutral-200 bg-white p-3 md:flex">
           <NavLinks />
+          <RestaurantFooter />
         </aside>
 
         {mobileOpen && (
           <div className="fixed inset-0 z-20 bg-black/30 md:hidden" onClick={() => setMobileOpen(false)}>
             <div
-              className="h-full w-64 bg-white p-3 shadow-lg"
+              className="flex h-full w-64 flex-col justify-between bg-white p-3 shadow-lg"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="mb-3 flex items-center gap-1.5 px-1">
-                <LogoMark />
-                <span className="font-brand text-2xl font-extrabold tracking-tight text-neutral-900">Vite-Fait</span>
+              <div>
+                <div className="mb-3 flex items-center gap-1.5 px-1">
+                  <LogoMark />
+                  <span className="font-brand text-2xl font-extrabold tracking-tight text-neutral-900">Vite-Fait</span>
+                </div>
+                <NavLinks onNavigate={() => setMobileOpen(false)} />
+                <div className="mt-3 px-1">
+                  <LanguageToggle />
+                </div>
               </div>
-              <NavLinks onNavigate={() => setMobileOpen(false)} />
-              <div className="mt-3 px-1">
-                <LanguageToggle />
-              </div>
+              <RestaurantFooter />
             </div>
           </div>
         )}
@@ -114,3 +187,4 @@ export function DashboardLayout(): ReactNode {
     </div>
   )
 }
+

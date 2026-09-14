@@ -91,7 +91,11 @@
       "linkTitle": "Votre lien de commande",
       "planTitle": "Votre plan",
       "recentOrders": "Commandes récentes",
-      "noOrdersYet": "Aucune commande pour le moment."
+      "noOrdersYet": "Aucune commande pour le moment.",
+      "searchPlaceholder": "Rechercher commandes, clients...",
+      "calendarTitle": "Calendrier",
+      "ordersUsedThisMonth": "commandes utilisées ce mois",
+      "unlimitedOrders": "Commandes illimitées"
     }
   },
   "menu": {
