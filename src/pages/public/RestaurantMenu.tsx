@@ -48,7 +48,7 @@ function RestaurantMenuContent({ slug, accessSource }: { slug: string; accessSou
     <div className="min-h-screen bg-neutral-50 pb-24 dark:bg-neutral-950">
       <PublicHeader restaurant={restaurant} />
 
-      <main className="mx-auto max-w-3xl px-4 py-6">
+      <main className="animate-fade-in-up mx-auto max-w-3xl px-4 py-6">
         {!restaurant.is_open && (
           <div className="mb-6 rounded-xl border border-amber-200 bg-amber-50 p-4 text-center dark:border-amber-900 dark:bg-amber-950">
             <p className="font-semibold text-amber-900 dark:text-amber-200">{t('publicMenu.closedTitle')}</p>
@@ -96,7 +96,10 @@ function RestaurantMenuContent({ slug, accessSource }: { slug: string; accessSou
                 <h3 className="mb-2 text-sm font-semibold uppercase tracking-wide text-neutral-500 dark:text-neutral-400">{category}</h3>
                 <div className="flex flex-col divide-y divide-neutral-200 rounded-xl border border-neutral-200 bg-white dark:divide-neutral-800 dark:border-neutral-800 dark:bg-neutral-900">
                   {categoryItems!.map((item) => (
-                    <div key={item.id} className="flex items-center gap-3 p-3">
+                    <div
+                      key={item.id}
+                      className="flex items-center gap-3 p-3 transition-colors duration-200 hover:bg-neutral-50 dark:hover:bg-neutral-800/50"
+                    >
                       {item.photo_url && <img src={item.photo_url} alt="" className="size-14 shrink-0 rounded-lg object-cover" />}
                       <div className="min-w-0 flex-1">
                         <p className="font-medium text-neutral-900 dark:text-neutral-100">{item.name}</p>
@@ -131,7 +134,7 @@ function RestaurantMenuContent({ slug, accessSource }: { slug: string; accessSou
         <button
           type="button"
           onClick={() => setCartOpen(true)}
-          className="fixed inset-x-4 bottom-4 z-40 flex items-center justify-between rounded-xl bg-brand-600 px-5 py-3 text-white shadow-lg sm:inset-x-auto sm:right-4 sm:w-80"
+          className="animate-fade-in-up fixed inset-x-4 bottom-4 z-40 flex items-center justify-between rounded-xl bg-brand-600 px-5 py-3 text-white shadow-lg transition-transform duration-200 hover:-translate-y-0.5 sm:inset-x-auto sm:right-4 sm:w-80"
         >
           <span className="font-semibold">
             {t('publicMenu.cart')} ({count})

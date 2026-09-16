@@ -37,9 +37,11 @@ export function ThemeToggle({ className }: { className?: string }) {
       type="button"
       onClick={toggleTheme}
       aria-label={theme === 'dark' ? t('common.switchToLight') : t('common.switchToDark')}
-      className={`rounded-full p-2 text-neutral-500 hover:bg-neutral-100 hover:text-neutral-700 dark:text-neutral-400 dark:hover:bg-neutral-800 dark:hover:text-neutral-100 ${className ?? ''}`}
+      className={`rounded-full p-2 text-neutral-500 transition-colors duration-200 hover:bg-neutral-100 hover:text-neutral-700 dark:text-neutral-400 dark:hover:bg-neutral-800 dark:hover:text-neutral-100 ${className ?? ''}`}
     >
-      {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
+      <span key={theme} className="animate-scale-in block">
+        {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
+      </span>
     </button>
   )
 }

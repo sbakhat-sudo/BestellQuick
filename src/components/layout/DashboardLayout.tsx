@@ -1,6 +1,6 @@
 import { type FormEvent, type ReactNode, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { NavLink, Outlet, useNavigate } from 'react-router-dom'
+import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom'
 import clsx from 'clsx'
 import { useAuth } from '@/context/AuthContext'
 import { useCurrentRestaurant } from '@/context/RestaurantContext'
@@ -80,6 +80,7 @@ export function DashboardLayout(): ReactNode {
   const { signOut } = useAuth()
   const restaurant = useCurrentRestaurant()
   const navigate = useNavigate()
+  const location = useLocation()
   const [mobileOpen, setMobileOpen] = useState(false)
   const [search, setSearch] = useState('')
 
@@ -165,7 +166,7 @@ export function DashboardLayout(): ReactNode {
           </div>
         )}
 
-        <main className="min-w-0 flex-1 p-4 sm:p-6">
+        <main key={location.pathname} className="animate-fade-in-up min-w-0 flex-1 p-4 sm:p-6">
           <Outlet />
         </main>
       </div>
