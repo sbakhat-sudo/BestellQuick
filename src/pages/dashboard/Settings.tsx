@@ -22,10 +22,22 @@ export default function Settings() {
   const [address, setAddress] = useState(restaurant.address ?? '')
   const [phone, setPhone] = useState(restaurant.phone ?? '')
   const [email, setEmail] = useState(restaurant.email ?? '')
+  const [infoSaved, setInfoSaved] = useState(false)
+  const [infoError, setInfoError] = useState<string | null>(null)
 
   const onSaveInfo = async (e: FormEvent) => {
     e.preventDefault()
-    await updateRestaurant.mutateAsync({ name, address, phone, email })
+    setInfoError(null)
+    setInfoSaved(false)
+    try {
+      await updateRestaurant.mutateAsync({ name, address, phone, email })
+      setInfoSaved(true)
+      setTimeout(() => setInfoSaved(false), 3000)
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.error('Failed to save restaurant info:', err)
+      setInfoError(err instanceof Error ? err.message : t('common.error'))
+    }
   }
 
   return (
@@ -61,10 +73,20 @@ export default function Settings() {
               <Input label={t('settings.phone')} value={phone} onChange={(e) => setPhone(e.target.value)} />
               <Input label={t('settings.email')} type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
             </div>
-            <div>
+            {infoError && (
+              <p role="alert" className="text-sm text-red-600">
+                {infoError}
+              </p>
+            )}
+            <div className="flex items-center gap-3">
               <Button type="submit" isLoading={updateRestaurant.isPending}>
                 {t('common.save')}
               </Button>
+              {infoSaved && (
+                <span className="animate-fade-in text-sm font-medium text-brand-600 dark:text-brand-400">
+                  ✓ {t('common.saved')}
+                </span>
+              )}
             </div>
           </form>
         </CardBody>
