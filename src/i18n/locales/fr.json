@@ -20,6 +20,7 @@
     "required": "obligatoire",
     "currency": "MAD",
     "saving": "Enregistrement...",
+    "saved": "Enregistré",
     "error": "Une erreur est survenue",
     "success": "Opération réussie",
     "language": "Langue",

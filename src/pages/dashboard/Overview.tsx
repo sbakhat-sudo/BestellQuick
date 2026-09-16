@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { type KeyboardEvent, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link, useNavigate } from 'react-router-dom'
 import { format } from 'date-fns'
@@ -85,6 +85,14 @@ export default function Overview() {
   const monthlyLimit = PLAN_LIMITS[restaurant.plan].monthlyOrders
   const planLabel = t(`settings.plan${restaurant.plan[0].toUpperCase()}${restaurant.plan.slice(1)}`)
 
+  const goToTodaysOrders = () => navigate(`/dashboard/orders?date=${format(new Date(), 'yyyy-MM-dd')}`)
+  const onCardKeyDown = (e: KeyboardEvent, action: () => void) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault()
+      action()
+    }
+  }
+
   return (
     <div className="flex flex-col gap-6">
       <div>
@@ -93,7 +101,13 @@ export default function Overview() {
       </div>
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-        <Card className="from-amber-50 to-orange-50 dark:from-amber-950/40 dark:to-orange-950/20">
+        <Card
+          role="button"
+          tabIndex={0}
+          onClick={goToTodaysOrders}
+          onKeyDown={(e) => onCardKeyDown(e, goToTodaysOrders)}
+          className="cursor-pointer from-amber-50 to-orange-50 dark:from-amber-950/40 dark:to-orange-950/20"
+        >
           <CardBody className="flex items-center gap-4">
             <RingStat percent={ordersTodayPct} icon={<BagIcon />} colorFrom="#fde047" colorTo="#22c55e" />
             <div>
@@ -102,7 +116,13 @@ export default function Overview() {
             </div>
           </CardBody>
         </Card>
-        <Card className="from-teal-50 to-sky-50 dark:from-teal-950/40 dark:to-sky-950/20">
+        <Card
+          role="button"
+          tabIndex={0}
+          onClick={goToTodaysOrders}
+          onKeyDown={(e) => onCardKeyDown(e, goToTodaysOrders)}
+          className="cursor-pointer from-teal-50 to-sky-50 dark:from-teal-950/40 dark:to-sky-950/20"
+        >
           <CardBody className="flex items-center gap-4">
             <RingStat percent={revenueTodayPct} icon={<CoinIcon />} colorFrom="#5eead4" colorTo="#0ea5e9" />
             <div>
@@ -113,7 +133,13 @@ export default function Overview() {
             </div>
           </CardBody>
         </Card>
-        <Card className="from-sky-50 to-indigo-50 dark:from-sky-950/40 dark:to-indigo-950/20">
+        <Card
+          role="button"
+          tabIndex={0}
+          onClick={() => navigate('/dashboard/settings')}
+          onKeyDown={(e) => onCardKeyDown(e, () => navigate('/dashboard/settings'))}
+          className="cursor-pointer from-sky-50 to-indigo-50 dark:from-sky-950/40 dark:to-indigo-950/20"
+        >
           <CardBody className="flex items-center gap-4">
             <RingStat percent={restaurant.is_open ? 100 : 0} icon={<ShopIcon />} colorFrom="#7dd3fc" colorTo="#6366f1" />
             <div className="flex-1">
@@ -121,7 +147,7 @@ export default function Overview() {
               <p className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">
                 {restaurant.is_open ? t('dashboard.overview.open') : t('dashboard.overview.closed')}
               </p>
-              <div className="mt-1">
+              <div className="mt-1" onClick={(e) => e.stopPropagation()} onKeyDown={(e) => e.stopPropagation()}>
                 <Toggle
                   checked={restaurant.is_open}
                   onChange={(checked) => updateRestaurant.mutate({ is_open: checked })}
