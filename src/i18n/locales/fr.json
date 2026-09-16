@@ -62,6 +62,7 @@
     "footerRights": "Tous droits réservés."
   },
   "auth": {
+    "backToHome": "Retour à l'accueil",
     "loginTitle": "Connexion",
     "signupTitle": "Créer votre restaurant",
     "email": "E-mail",
