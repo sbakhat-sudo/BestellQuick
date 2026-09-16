@@ -28,11 +28,11 @@ export function RestaurantQrCode({ slug }: { slug: string }) {
 
   return (
     <div className="flex flex-col items-center gap-3 sm:flex-row sm:items-start">
-      <div ref={canvasRef} className="rounded-xl border border-neutral-200 p-3">
+      <div className="rounded-xl border border-neutral-200 bg-white p-3 dark:border-neutral-700" ref={canvasRef}>
         <QRCodeCanvas value={qrValue} size={160} level="M" includeMargin />
       </div>
       <div className="flex flex-1 flex-col gap-2 text-center sm:text-start">
-        <p className="break-all text-sm text-neutral-600">{url}</p>
+        <p className="break-all text-sm text-neutral-600 dark:text-neutral-400">{url}</p>
         <div className="flex flex-wrap justify-center gap-2 sm:justify-start">
           <Button size="sm" variant="outline" onClick={onDownload}>
             {t('common.download')}

@@ -32,7 +32,7 @@ export function DeliveryDriversSection() {
   return (
     <Card>
       <CardHeader>
-        <h2 className="font-semibold text-neutral-900">{t('delivery.title')}</h2>
+        <h2 className="font-semibold text-neutral-900 dark:text-neutral-100">{t('delivery.title')}</h2>
       </CardHeader>
       <CardBody className="flex flex-col gap-4">
         <form onSubmit={onAdd} className="flex flex-wrap items-end gap-2">
@@ -46,14 +46,14 @@ export function DeliveryDriversSection() {
         {isLoading ? (
           <Spinner />
         ) : !drivers || drivers.length === 0 ? (
-          <p className="text-sm text-neutral-500">{t('delivery.noDrivers')}</p>
+          <p className="text-sm text-neutral-500 dark:text-neutral-400">{t('delivery.noDrivers')}</p>
         ) : (
-          <ul className="flex flex-col divide-y divide-neutral-100">
+          <ul className="flex flex-col divide-y divide-neutral-100 dark:divide-neutral-800">
             {drivers.map((driver) => (
               <li key={driver.id} className="flex items-center justify-between py-2">
                 <div>
-                  <p className="text-sm font-medium text-neutral-900">{driver.name}</p>
-                  <p className="text-xs text-neutral-500">{driver.phone}</p>
+                  <p className="text-sm font-medium text-neutral-900 dark:text-neutral-100">{driver.name}</p>
+                  <p className="text-xs text-neutral-500 dark:text-neutral-400">{driver.phone}</p>
                 </div>
                 <div className="flex items-center gap-3">
                   <Toggle

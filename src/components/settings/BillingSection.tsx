@@ -29,17 +29,17 @@ export function BillingSection() {
   return (
     <Card>
       <CardHeader>
-        <h2 className="font-semibold text-neutral-900">{t('settings.planTitle')}</h2>
+        <h2 className="font-semibold text-neutral-900 dark:text-neutral-100">{t('settings.planTitle')}</h2>
       </CardHeader>
       <CardBody className="flex flex-col gap-4">
         <div className="flex items-center gap-2">
-          <span className="text-sm text-neutral-500">{t('settings.currentPlan')}</span>
+          <span className="text-sm text-neutral-500 dark:text-neutral-400">{t('settings.currentPlan')}</span>
           <Badge tone="brand">{t(`settings.${PLAN_KEY[restaurant.plan]}`)}</Badge>
           {subscription?.status === 'trialing' && <Badge tone="warning">{t('settings.trialInfo')}</Badge>}
         </div>
 
         {restaurant.plan === 'free' && (
-          <p className="text-sm text-neutral-500">{t('settings.planLimitReached')}</p>
+          <p className="text-sm text-neutral-500 dark:text-neutral-400">{t('settings.planLimitReached')}</p>
         )}
 
         <div className="flex flex-wrap gap-3">

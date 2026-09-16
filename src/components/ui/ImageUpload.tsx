@@ -33,12 +33,12 @@ export function ImageUpload({ label, value, onUpload }: ImageUploadProps) {
 
   return (
     <div className="flex flex-col gap-2">
-      <span className="text-sm font-medium text-neutral-800">{label}</span>
+      <span className="text-sm font-medium text-neutral-800 dark:text-neutral-200">{label}</span>
       <div className="flex items-center gap-3">
         {value ? (
           <img src={value} alt="" className="size-16 rounded-lg object-cover" />
         ) : (
-          <div className="flex size-16 items-center justify-center rounded-lg bg-neutral-100 text-xs text-neutral-400">
+          <div className="flex size-16 items-center justify-center rounded-lg bg-neutral-100 text-xs text-neutral-400 dark:bg-neutral-800 dark:text-neutral-500">
             {t('common.photo')}
           </div>
         )}

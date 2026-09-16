@@ -50,15 +50,15 @@ export function CartModal({ open, onClose, restaurantId, accessSource, onOrderPl
   return (
     <Modal open={open} onClose={onClose} title={t('publicMenu.yourCart')}>
       {lines.length === 0 ? (
-        <p className="text-sm text-neutral-500">{t('publicMenu.emptyCart')}</p>
+        <p className="text-sm text-neutral-500 dark:text-neutral-400">{t('publicMenu.emptyCart')}</p>
       ) : (
         <form onSubmit={onSubmit} className="flex flex-col gap-4">
-          <ul className="flex flex-col divide-y divide-neutral-100">
+          <ul className="flex flex-col divide-y divide-neutral-100 dark:divide-neutral-800">
             {lines.map((line) => (
               <li key={line.item.id} className="flex items-center justify-between gap-2 py-2">
                 <div className="min-w-0 flex-1">
-                  <p className="truncate text-sm font-medium text-neutral-900">{line.item.name}</p>
-                  <p className="text-xs text-neutral-500">
+                  <p className="truncate text-sm font-medium text-neutral-900 dark:text-neutral-100">{line.item.name}</p>
+                  <p className="text-xs text-neutral-500 dark:text-neutral-400">
                     {Number(line.item.price).toFixed(2)} {t('common.currency')}
                   </p>
                 </div>
@@ -67,16 +67,16 @@ export function CartModal({ open, onClose, restaurantId, accessSource, onOrderPl
                     type="button"
                     aria-label="-"
                     onClick={() => setQuantity(line.item.id, line.quantity - 1)}
-                    className="size-7 rounded-full border border-neutral-300 text-neutral-700 hover:bg-neutral-50"
+                    className="size-7 rounded-full border border-neutral-300 text-neutral-700 hover:bg-neutral-50 dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800"
                   >
                     −
                   </button>
-                  <span className="w-5 text-center text-sm">{line.quantity}</span>
+                  <span className="w-5 text-center text-sm dark:text-neutral-100">{line.quantity}</span>
                   <button
                     type="button"
                     aria-label="+"
                     onClick={() => setQuantity(line.item.id, line.quantity + 1)}
-                    className="size-7 rounded-full border border-neutral-300 text-neutral-700 hover:bg-neutral-50"
+                    className="size-7 rounded-full border border-neutral-300 text-neutral-700 hover:bg-neutral-50 dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800"
                   >
                     +
                   </button>
@@ -85,7 +85,7 @@ export function CartModal({ open, onClose, restaurantId, accessSource, onOrderPl
             ))}
           </ul>
 
-          <div className="flex items-center justify-between border-t border-neutral-200 pt-3 font-semibold">
+          <div className="flex items-center justify-between border-t border-neutral-200 pt-3 font-semibold dark:border-neutral-800 dark:text-neutral-100">
             <span>{t('publicMenu.orderTotal')}</span>
             <span>
               {total.toFixed(2)} {t('common.currency')}
@@ -93,14 +93,16 @@ export function CartModal({ open, onClose, restaurantId, accessSource, onOrderPl
           </div>
 
           <fieldset className="flex flex-col gap-2">
-            <legend className="mb-1 text-sm font-medium text-neutral-800">{t('publicMenu.orderType')}</legend>
+            <legend className="mb-1 text-sm font-medium text-neutral-800 dark:text-neutral-200">{t('publicMenu.orderType')}</legend>
             <div className="flex gap-2">
               <button
                 type="button"
                 onClick={() => setOrderType('dine_in')}
                 aria-pressed={orderType === 'dine_in'}
                 className={`flex-1 rounded-lg border px-3 py-2 text-sm font-medium ${
-                  orderType === 'dine_in' ? 'border-brand-600 bg-brand-50 text-brand-800' : 'border-neutral-300 text-neutral-700'
+                  orderType === 'dine_in'
+                    ? 'border-brand-600 bg-brand-50 text-brand-800 dark:bg-brand-900/30 dark:text-brand-300'
+                    : 'border-neutral-300 text-neutral-700 dark:border-neutral-700 dark:text-neutral-300'
                 }`}
               >
                 {t('publicMenu.dineIn')}
@@ -110,7 +112,9 @@ export function CartModal({ open, onClose, restaurantId, accessSource, onOrderPl
                 onClick={() => setOrderType('delivery')}
                 aria-pressed={orderType === 'delivery'}
                 className={`flex-1 rounded-lg border px-3 py-2 text-sm font-medium ${
-                  orderType === 'delivery' ? 'border-brand-600 bg-brand-50 text-brand-800' : 'border-neutral-300 text-neutral-700'
+                  orderType === 'delivery'
+                    ? 'border-brand-600 bg-brand-50 text-brand-800 dark:bg-brand-900/30 dark:text-brand-300'
+                    : 'border-neutral-300 text-neutral-700 dark:border-neutral-700 dark:text-neutral-300'
                 }`}
               >
                 {t('publicMenu.delivery')}

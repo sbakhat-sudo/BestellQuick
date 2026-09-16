@@ -88,8 +88,8 @@ export default function Overview() {
   return (
     <div className="flex flex-col gap-6">
       <div>
-        <h1 className="text-2xl font-bold text-neutral-900">{t('dashboard.overview.title')}</h1>
-        <p className="text-neutral-600">{t('dashboard.overview.welcome', { name: restaurant.name })}</p>
+        <h1 className="text-2xl font-bold text-neutral-900 dark:text-neutral-100">{t('dashboard.overview.title')}</h1>
+        <p className="text-neutral-600 dark:text-neutral-400">{t('dashboard.overview.welcome', { name: restaurant.name })}</p>
       </div>
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
@@ -97,8 +97,8 @@ export default function Overview() {
           <CardBody className="flex items-center gap-4">
             <RingStat percent={ordersTodayPct} icon={<BagIcon />} colorFrom="#fde047" colorTo="#22c55e" />
             <div>
-              <p className="text-sm text-neutral-500">{t('dashboard.overview.ordersToday')}</p>
-              <p className="text-3xl font-bold text-neutral-900">{ordersToday}</p>
+              <p className="text-sm text-neutral-500 dark:text-neutral-400">{t('dashboard.overview.ordersToday')}</p>
+              <p className="text-3xl font-bold text-neutral-900 dark:text-neutral-100">{ordersToday}</p>
             </div>
           </CardBody>
         </Card>
@@ -106,8 +106,8 @@ export default function Overview() {
           <CardBody className="flex items-center gap-4">
             <RingStat percent={revenueTodayPct} icon={<CoinIcon />} colorFrom="#5eead4" colorTo="#0ea5e9" />
             <div>
-              <p className="text-sm text-neutral-500">{t('dashboard.overview.revenueToday')}</p>
-              <p className="text-3xl font-bold text-neutral-900">
+              <p className="text-sm text-neutral-500 dark:text-neutral-400">{t('dashboard.overview.revenueToday')}</p>
+              <p className="text-3xl font-bold text-neutral-900 dark:text-neutral-100">
                 {revenueToday.toFixed(2)} {t('common.currency')}
               </p>
             </div>
@@ -117,8 +117,8 @@ export default function Overview() {
           <CardBody className="flex items-center gap-4">
             <RingStat percent={restaurant.is_open ? 100 : 0} icon={<ShopIcon />} colorFrom="#7dd3fc" colorTo="#6366f1" />
             <div className="flex-1">
-              <p className="text-sm text-neutral-500">{t('dashboard.overview.openStatus')}</p>
-              <p className="text-lg font-semibold text-neutral-900">
+              <p className="text-sm text-neutral-500 dark:text-neutral-400">{t('dashboard.overview.openStatus')}</p>
+              <p className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">
                 {restaurant.is_open ? t('dashboard.overview.open') : t('dashboard.overview.closed')}
               </p>
               <div className="mt-1">
@@ -137,7 +137,7 @@ export default function Overview() {
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
         <Card>
           <CardHeader>
-            <h2 className="font-semibold text-neutral-900">{t('dashboard.overview.calendarTitle')}</h2>
+            <h2 className="font-semibold text-neutral-900 dark:text-neutral-100">{t('dashboard.overview.calendarTitle')}</h2>
           </CardHeader>
           <CardBody>
             <MiniCalendar onSelectDay={(day) => navigate(`/dashboard/orders?date=${format(day, 'yyyy-MM-dd')}`)} />
@@ -146,39 +146,39 @@ export default function Overview() {
 
         <Card>
           <CardHeader>
-            <h2 className="font-semibold text-neutral-900">{t('dashboard.overview.qrTitle')}</h2>
+            <h2 className="font-semibold text-neutral-900 dark:text-neutral-100">{t('dashboard.overview.qrTitle')}</h2>
           </CardHeader>
           <CardBody>
-            <p className="mb-3 text-sm text-neutral-500">{t('dashboard.overview.qrDesc')}</p>
+            <p className="mb-3 text-sm text-neutral-500 dark:text-neutral-400">{t('dashboard.overview.qrDesc')}</p>
             <RestaurantQrCode slug={restaurant.slug} />
           </CardBody>
         </Card>
 
         <Card>
           <CardHeader>
-            <h2 className="font-semibold text-neutral-900">{t('dashboard.overview.planTitle')}</h2>
+            <h2 className="font-semibold text-neutral-900 dark:text-neutral-100">{t('dashboard.overview.planTitle')}</h2>
           </CardHeader>
           <CardBody className="flex flex-col gap-3">
             <div className="flex items-center gap-2">
               <Badge tone="brand">{planLabel}</Badge>
-              <span className="text-sm text-neutral-500">{PLAN_LIMITS[restaurant.plan].priceLabel}</span>
+              <span className="text-sm text-neutral-500 dark:text-neutral-400">{PLAN_LIMITS[restaurant.plan].priceLabel}</span>
             </div>
             {monthlyLimit ? (
               <div>
-                <div className="h-2 overflow-hidden rounded-full bg-neutral-100">
+                <div className="h-2 overflow-hidden rounded-full bg-neutral-100 dark:bg-neutral-800">
                   <div
                     className="h-full rounded-full bg-brand-600"
                     style={{ width: `${Math.min(100, (ordersThisMonth / monthlyLimit) * 100)}%` }}
                   />
                 </div>
-                <p className="mt-1 text-xs text-neutral-500">
+                <p className="mt-1 text-xs text-neutral-500 dark:text-neutral-400">
                   {ordersThisMonth}/{monthlyLimit} {t('dashboard.overview.ordersUsedThisMonth')}
                 </p>
               </div>
             ) : (
-              <p className="text-xs text-neutral-500">{t('dashboard.overview.unlimitedOrders')}</p>
+              <p className="text-xs text-neutral-500 dark:text-neutral-400">{t('dashboard.overview.unlimitedOrders')}</p>
             )}
-            <Link to="/dashboard/settings" className="text-sm font-semibold text-brand-700 hover:underline">
+            <Link to="/dashboard/settings" className="text-sm font-semibold text-brand-700 hover:underline dark:text-brand-400">
               {t('settings.upgrade')} →
             </Link>
           </CardBody>
@@ -187,18 +187,18 @@ export default function Overview() {
 
       <Card>
         <CardHeader>
-          <h2 className="font-semibold text-neutral-900">{t('dashboard.overview.recentOrders')}</h2>
+          <h2 className="font-semibold text-neutral-900 dark:text-neutral-100">{t('dashboard.overview.recentOrders')}</h2>
         </CardHeader>
         <CardBody>
           {recent.length === 0 ? (
-            <p className="text-sm text-neutral-500">{t('dashboard.overview.noOrdersYet')}</p>
+            <p className="text-sm text-neutral-500 dark:text-neutral-400">{t('dashboard.overview.noOrdersYet')}</p>
           ) : (
-            <ul className="flex flex-col divide-y divide-neutral-100">
+            <ul className="flex flex-col divide-y divide-neutral-100 dark:divide-neutral-800">
               {recent.map((order) => (
                 <li key={order.id} className="flex items-center justify-between py-2">
                   <div>
-                    <p className="font-medium text-neutral-900">{order.customer_name}</p>
-                    <p className="text-xs text-neutral-500">{new Date(order.created_at).toLocaleString()}</p>
+                    <p className="font-medium text-neutral-900 dark:text-neutral-100">{order.customer_name}</p>
+                    <p className="text-xs text-neutral-500 dark:text-neutral-400">{new Date(order.created_at).toLocaleString()}</p>
                   </div>
                   <div className="flex items-center gap-2">
                     <span className="text-sm font-semibold">

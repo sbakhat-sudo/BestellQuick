@@ -46,19 +46,19 @@ export default function Menu() {
   return (
     <div className="flex flex-col gap-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-neutral-900">{t('menu.title')}</h1>
+        <h1 className="text-2xl font-bold text-neutral-900 dark:text-neutral-100">{t('menu.title')}</h1>
         <Button onClick={openAdd}>{t('menu.addItem')}</Button>
       </div>
 
       {isLoading ? (
         <Spinner />
       ) : !items || items.length === 0 ? (
-        <p className="text-neutral-500">{t('menu.noItems')}</p>
+        <p className="text-neutral-500 dark:text-neutral-400">{t('menu.noItems')}</p>
       ) : (
         <div className="flex flex-col gap-6">
           {grouped.map(([category, categoryItems]) => (
             <div key={category}>
-              <h2 className="mb-2 text-lg font-semibold text-neutral-900">{category}</h2>
+              <h2 className="mb-2 text-lg font-semibold text-neutral-900 dark:text-neutral-100">{category}</h2>
               <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
                 {categoryItems.map((item) => (
                   <Card key={item.id}>
@@ -66,21 +66,27 @@ export default function Menu() {
                       {item.photo_url ? (
                         <img src={item.photo_url} alt="" className="size-16 shrink-0 rounded-lg object-cover" />
                       ) : (
-                        <div className="size-16 shrink-0 rounded-lg bg-neutral-100" />
+                        <div className="size-16 shrink-0 rounded-lg bg-neutral-100 dark:bg-neutral-800" />
                       )}
                       <div className="min-w-0 flex-1">
                         <div className="flex items-start justify-between gap-2">
-                          <p className="truncate font-semibold text-neutral-900">{item.name}</p>
+                          <p className="truncate font-semibold text-neutral-900 dark:text-neutral-100">{item.name}</p>
                           <Badge tone={item.status === 'available' ? 'success' : 'danger'}>
                             {item.status === 'available' ? t('menu.available') : t('menu.outOfStock')}
                           </Badge>
                         </div>
-                        {item.description && <p className="mt-0.5 line-clamp-2 text-xs text-neutral-500">{item.description}</p>}
-                        <p className="mt-1 font-semibold text-brand-700">
+                        {item.description && (
+                          <p className="mt-0.5 line-clamp-2 text-xs text-neutral-500 dark:text-neutral-400">{item.description}</p>
+                        )}
+                        <p className="mt-1 font-semibold text-brand-700 dark:text-brand-400">
                           {Number(item.price).toFixed(2)} {t('common.currency')}
                         </p>
                         <div className="mt-2 flex gap-3">
-                          <button type="button" onClick={() => openEdit(item)} className="text-xs font-semibold text-neutral-700 hover:underline">
+                          <button
+                            type="button"
+                            onClick={() => openEdit(item)}
+                            className="text-xs font-semibold text-neutral-700 hover:underline dark:text-neutral-300"
+                          >
                             {t('common.edit')}
                           </button>
                           <button
@@ -91,7 +97,7 @@ export default function Menu() {
                                 patch: { status: item.status === 'available' ? 'out_of_stock' : 'available' },
                               })
                             }
-                            className="text-xs font-semibold text-neutral-700 hover:underline"
+                            className="text-xs font-semibold text-neutral-700 hover:underline dark:text-neutral-300"
                           >
                             {item.status === 'available' ? t('menu.outOfStock') : t('menu.available')}
                           </button>

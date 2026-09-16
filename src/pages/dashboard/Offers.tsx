@@ -33,7 +33,7 @@ export default function Offers() {
   return (
     <div className="flex flex-col gap-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-neutral-900">{t('offers.title')}</h1>
+        <h1 className="text-2xl font-bold text-neutral-900 dark:text-neutral-100">{t('offers.title')}</h1>
         <Button
           onClick={() => {
             setEditing(undefined)
@@ -47,7 +47,7 @@ export default function Offers() {
       {isLoading ? (
         <Spinner />
       ) : !offers || offers.length === 0 ? (
-        <p className="text-neutral-500">{t('offers.noOffers')}</p>
+        <p className="text-neutral-500 dark:text-neutral-400">{t('offers.noOffers')}</p>
       ) : (
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {offers.map((offer) => {
@@ -57,15 +57,17 @@ export default function Offers() {
                 {offer.photo_url && <img src={offer.photo_url} alt="" className="h-32 w-full object-cover" />}
                 <CardBody>
                   <div className="mb-1 flex items-start justify-between gap-2">
-                    <p className="font-semibold text-neutral-900">{offer.title}</p>
+                    <p className="font-semibold text-neutral-900 dark:text-neutral-100">{offer.title}</p>
                     <Badge tone={tone}>{t(`offers.${key}`)}</Badge>
                   </div>
-                  {offer.description && <p className="mb-2 line-clamp-2 text-xs text-neutral-500">{offer.description}</p>}
-                  <p className="text-xs text-neutral-400">
+                  {offer.description && (
+                    <p className="mb-2 line-clamp-2 text-xs text-neutral-500 dark:text-neutral-400">{offer.description}</p>
+                  )}
+                  <p className="text-xs text-neutral-400 dark:text-neutral-500">
                     {offer.start_date} {offer.end_date ? `→ ${offer.end_date}` : ''}
                   </p>
                   {offer.price != null && (
-                    <p className="mt-1 font-semibold text-brand-700">
+                    <p className="mt-1 font-semibold text-brand-700 dark:text-brand-400">
                       {Number(offer.price).toFixed(2)} {t('common.currency')}
                     </p>
                   )}
@@ -76,7 +78,7 @@ export default function Offers() {
                         setEditing(offer)
                         setModalOpen(true)
                       }}
-                      className="text-xs font-semibold text-neutral-700 hover:underline"
+                      className="text-xs font-semibold text-neutral-700 hover:underline dark:text-neutral-300"
                     >
                       {t('common.edit')}
                     </button>
