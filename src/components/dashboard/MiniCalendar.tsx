@@ -1,6 +1,7 @@
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import {
   addDays,
+  addMonths,
   endOfMonth,
   endOfWeek,
   format,
@@ -14,12 +15,17 @@ import clsx from 'clsx'
 
 const WEEKDAY_LABELS = ['Lu', 'Ma', 'Me', 'Je', 'Ve', 'Sa', 'Di']
 
-export function MiniCalendar() {
+interface MiniCalendarProps {
+  onSelectDay?: (day: Date) => void
+}
+
+export function MiniCalendar({ onSelectDay }: MiniCalendarProps) {
   const today = new Date()
+  const [visibleMonth, setVisibleMonth] = useState(() => startOfMonth(today))
 
   const days = useMemo(() => {
-    const monthStart = startOfMonth(today)
-    const monthEnd = endOfMonth(today)
+    const monthStart = startOfMonth(visibleMonth)
+    const monthEnd = endOfMonth(visibleMonth)
     const gridStart = startOfWeek(monthStart, { weekStartsOn: 1 })
     const gridEnd = endOfWeek(monthEnd, { weekStartsOn: 1 })
 
@@ -30,12 +36,29 @@ export function MiniCalendar() {
       day = addDays(day, 1)
     }
     return result
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [visibleMonth])
 
   return (
     <div>
-      <p className="mb-3 text-sm font-medium capitalize text-neutral-700">{format(today, 'MMMM yyyy', { locale: fr })}</p>
+      <div className="mb-3 flex items-center justify-between">
+        <button
+          type="button"
+          onClick={() => setVisibleMonth((m) => addMonths(m, -1))}
+          className="flex size-6 items-center justify-center rounded-full text-neutral-500 hover:bg-neutral-100"
+          aria-label="Mois précédent"
+        >
+          ‹
+        </button>
+        <p className="text-sm font-medium capitalize text-neutral-700">{format(visibleMonth, 'MMMM yyyy', { locale: fr })}</p>
+        <button
+          type="button"
+          onClick={() => setVisibleMonth((m) => addMonths(m, 1))}
+          className="flex size-6 items-center justify-center rounded-full text-neutral-500 hover:bg-neutral-100"
+          aria-label="Mois suivant"
+        >
+          ›
+        </button>
+      </div>
       <div className="grid grid-cols-7 gap-y-1 text-center text-xs">
         {WEEKDAY_LABELS.map((label) => (
           <span key={label} className="font-medium text-neutral-400">
@@ -43,19 +66,21 @@ export function MiniCalendar() {
           </span>
         ))}
         {days.map((day) => (
-          <span
+          <button
             key={day.toISOString()}
+            type="button"
+            onClick={() => onSelectDay?.(day)}
             className={clsx(
-              'mx-auto flex size-7 items-center justify-center rounded-full',
+              'mx-auto flex size-7 items-center justify-center rounded-full transition-colors',
               isSameDay(day, today)
                 ? 'bg-brand-600 font-semibold text-white'
-                : isSameMonth(day, today)
-                  ? 'text-neutral-700'
-                  : 'text-neutral-300',
+                : isSameMonth(day, visibleMonth)
+                  ? 'text-neutral-700 hover:bg-neutral-100'
+                  : 'text-neutral-300 hover:bg-neutral-50',
             )}
           >
             {format(day, 'd')}
-          </span>
+          </button>
         ))}
       </div>
     </div>

@@ -1,6 +1,7 @@
 import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { format } from 'date-fns'
 import { useCurrentRestaurant } from '@/context/RestaurantContext'
 import { useOrders } from '@/hooks/useOrders'
 import { useUpdateRestaurant } from '@/hooks/useUpdateRestaurant'
@@ -49,6 +50,7 @@ function percentVsYesterday(today: number, yesterday: number): number {
 
 export default function Overview() {
   const { t } = useTranslation()
+  const navigate = useNavigate()
   const restaurant = useCurrentRestaurant()
   const { data: orders = [] } = useOrders()
   const updateRestaurant = useUpdateRestaurant()
@@ -138,7 +140,7 @@ export default function Overview() {
             <h2 className="font-semibold text-neutral-900">{t('dashboard.overview.calendarTitle')}</h2>
           </CardHeader>
           <CardBody>
-            <MiniCalendar />
+            <MiniCalendar onSelectDay={(day) => navigate(`/dashboard/orders?date=${format(day, 'yyyy-MM-dd')}`)} />
           </CardBody>
         </Card>
 
