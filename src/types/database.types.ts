@@ -12,6 +12,16 @@ export type DeliveryStatus = 'pending' | 'assigned' | 'picked_up' | 'delivered' 
 export type AnalyticsEventType = 'qr_scan' | 'link_click'
 export type SubscriptionStatus = 'trialing' | 'active' | 'past_due' | 'canceled' | 'incomplete'
 
+export type WeekdayKey = 'mon' | 'tue' | 'wed' | 'thu' | 'fri' | 'sat' | 'sun'
+
+export interface DayHours {
+  enabled: boolean
+  open: string
+  close: string
+}
+
+export type WeeklyHours = Record<WeekdayKey, DayHours>
+
 export interface Restaurant {
   id: string
   owner_user_id: string
@@ -26,6 +36,7 @@ export interface Restaurant {
   plan: PlanType
   delivery_commission_type: CommissionType
   delivery_commission_value: number
+  weekly_hours: WeeklyHours
   created_at: string
 }
 
