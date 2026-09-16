@@ -11,7 +11,7 @@ const Overview = lazy(() => import('@/pages/dashboard/Overview'))
 const Menu = lazy(() => import('@/pages/dashboard/Menu'))
 const Orders = lazy(() => import('@/pages/dashboard/Orders'))
 const Offers = lazy(() => import('@/pages/dashboard/Offers'))
-const Marketing = lazy(() => import('@/pages/dashboard/Marketing'))
+const Subscriptions = lazy(() => import('@/pages/dashboard/Subscriptions'))
 const Analytics = lazy(() => import('@/pages/dashboard/Analytics'))
 const Settings = lazy(() => import('@/pages/dashboard/Settings'))
 const RestaurantMenu = lazy(() => import('@/pages/public/RestaurantMenu'))
@@ -42,7 +42,7 @@ export default function App() {
             <Route path="menu" element={<Menu />} />
             <Route path="orders" element={<Orders />} />
             <Route path="offers" element={<Offers />} />
-            <Route path="marketing" element={<Marketing />} />
+            <Route path="subscriptions" element={<Subscriptions />} />
             <Route path="analytics" element={<Analytics />} />
             <Route path="settings" element={<Settings />} />
           </Route>

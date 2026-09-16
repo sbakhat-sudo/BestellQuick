@@ -42,7 +42,7 @@
     "menu": "القائمة",
     "orders": "الطلبات",
     "offers": "العروض",
-    "marketing": "التسويق",
+    "subscriptions": "الاشتراكات",
     "analytics": "الإحصائيات",
     "settings": "الإعدادات"
   },
@@ -180,21 +180,13 @@
     "distanceKm": "المسافة (كم)",
     "assign": "تعيين"
   },
-  "marketing": {
-    "title": "حملات واتساب",
-    "proOnly": "ميزة مخصصة لباقتي Pro والسنوية فقط.",
-    "upgradeCta": "الترقية إلى باقة Pro",
-    "composeTitle": "حملة جديدة",
-    "message": "الرسالة",
-    "targetSegment": "الفئة المستهدفة",
-    "segmentAll": "جميع العملاء",
-    "segmentInactive": "العملاء غير النشطين (30 يوماً+)",
-    "send": "إرسال الحملة",
-    "sending": "جارٍ الإرسال...",
-    "history": "سجل الحملات",
-    "noCampaigns": "لم يتم إرسال أي حملة بعد.",
-    "recipients": "مستلم",
-    "sentAt": "أُرسلت في"
+  "subscriptions": {
+    "title": "الاشتراكات",
+    "subtitle": "اختر الباقة المناسبة لمطعمك.",
+    "currentPlanBadge": "باقتك",
+    "orderLimit": "{{count}} طلب/شهر",
+    "chooseThisPlan": "اختيار هذه الباقة",
+    "active": "الباقة النشطة"
   },
   "analytics": {
     "title": "الإحصائيات",
