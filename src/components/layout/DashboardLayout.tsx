@@ -1,4 +1,4 @@
-import { type FormEvent, type ReactElement, type ReactNode, useState } from 'react'
+import { type FormEvent, type ReactElement, type ReactNode, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom'
 import clsx from 'clsx'
@@ -185,6 +185,14 @@ export function DashboardLayout(): ReactNode {
     })
   }
 
+  const [scrolled, setScrolled] = useState(false)
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 4)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
   const onSearchSubmit = (e: FormEvent) => {
     e.preventDefault()
     navigate(search.trim() ? `/dashboard/orders?q=${encodeURIComponent(search.trim())}` : '/dashboard/orders')
@@ -192,7 +200,14 @@ export function DashboardLayout(): ReactNode {
 
   return (
     <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950">
-      <header className="sticky top-0 z-30 flex items-center justify-between gap-3 border-b border-neutral-200 bg-white px-4 py-3 sm:px-6 dark:border-neutral-800 dark:bg-neutral-900">
+      <header
+        className={clsx(
+          'sticky top-0 z-30 flex items-center justify-between gap-3 border-b px-4 py-3 transition-all duration-300 sm:px-6',
+          scrolled
+            ? 'border-neutral-200 bg-white/80 shadow-sm backdrop-blur-md dark:border-neutral-800 dark:bg-neutral-900/80'
+            : 'border-transparent bg-white dark:bg-neutral-900',
+        )}
+      >
         <div className="flex items-center gap-3">
           <button
             type="button"
