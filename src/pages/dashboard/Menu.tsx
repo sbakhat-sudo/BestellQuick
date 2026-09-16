@@ -6,6 +6,7 @@ import { Card, CardBody } from '@/components/ui/Card'
 import { Badge } from '@/components/ui/Badge'
 import { Spinner } from '@/components/ui/Spinner'
 import { MenuItemFormModal } from '@/components/menu/MenuItemFormModal'
+import { AiMenuImportModal } from '@/components/menu/AiMenuImportModal'
 import type { MenuItem } from '@/types/database.types'
 
 export default function Menu() {
@@ -15,6 +16,7 @@ export default function Menu() {
   const updateItem = useUpdateMenuItem()
   const deleteItem = useDeleteMenuItem()
   const [modalOpen, setModalOpen] = useState(false)
+  const [aiModalOpen, setAiModalOpen] = useState(false)
   const [editing, setEditing] = useState<MenuItem | undefined>(undefined)
 
   const grouped = useMemo(() => {
@@ -45,9 +47,14 @@ export default function Menu() {
 
   return (
     <div className="flex flex-col gap-6">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-wrap items-center justify-between gap-2">
         <h1 className="text-2xl font-bold text-neutral-900 dark:text-neutral-100">{t('menu.title')}</h1>
-        <Button onClick={openAdd}>{t('menu.addItem')}</Button>
+        <div className="flex gap-2">
+          <Button variant="outline" onClick={() => setAiModalOpen(true)}>
+            {t('menu.ai.importWithAi')}
+          </Button>
+          <Button onClick={openAdd}>{t('menu.addItem')}</Button>
+        </div>
       </div>
 
       {isLoading ? (
@@ -127,6 +134,7 @@ export default function Menu() {
           }
         }}
       />
+      <AiMenuImportModal open={aiModalOpen} onClose={() => setAiModalOpen(false)} />
     </div>
   )
 }

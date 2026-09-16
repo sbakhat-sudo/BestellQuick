@@ -44,6 +44,7 @@ n'était accessible dans cet environnement). Pour déployer :
    supabase functions deploy billing-portal
    supabase functions deploy stripe-webhook
    supabase functions deploy send-whatsapp-campaign
+   supabase functions deploy parse-menu-image
    ```
 4. Configurer les secrets des fonctions (voir `.env.example` pour la liste
    complète) : `supabase secrets set STRIPE_SECRET_KEY=... ...`
@@ -64,6 +65,7 @@ Voici les choix faits, documentés aussi en commentaire dans le code source :
 | Seuil "client inactif" (campagne WhatsApp) | 30 jours sans commande | `send-whatsapp-campaign` Edge Function |
 | Devise affichée | MAD (dirham marocain) | `src/lib/i18n` — modifiable via `common.currency` |
 | API WhatsApp | Meta WhatsApp Cloud API (facilement remplaçable par Twilio dans `send-whatsapp-campaign/index.ts`) | Edge Function |
+| Import de menu par IA | Claude (Anthropic), jusqu'à 6 photos par analyse, revue manuelle obligatoire avant import | `parse-menu-image` Edge Function |
 
 ## Architecture des données & sécurité (RLS)
 
