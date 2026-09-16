@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --font-sans: "Inter", system-ui, "Segoe UI", Roboto, sans-serif;
   --font-brand: "Poppins", "Inter", system-ui, sans-serif;
@@ -20,8 +22,13 @@ html {
   color-scheme: light;
 }
 
+html.dark {
+  color-scheme: dark;
+  --ring-track-color: #404040;
+}
+
 body {
-  @apply bg-neutral-50 text-neutral-900 antialiased;
+  @apply bg-neutral-50 text-neutral-900 antialiased dark:bg-neutral-950 dark:text-neutral-100;
 }
 
 /* Keyboard focus visibility (accessibility requirement) */

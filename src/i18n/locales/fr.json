@@ -31,7 +31,9 @@
     "download": "Télécharger",
     "copyLink": "Copier le lien",
     "linkCopied": "Lien copié !",
-    "logout": "Déconnexion"
+    "logout": "Déconnexion",
+    "switchToDark": "Passer au thème sombre",
+    "switchToLight": "Passer au thème clair"
   },
   "nav": {
     "overview": "Vue d'ensemble",

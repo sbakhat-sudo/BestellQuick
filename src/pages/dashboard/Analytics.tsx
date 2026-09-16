@@ -36,7 +36,7 @@ export default function Analytics() {
 
   return (
     <div className="flex flex-col gap-6">
-      <h1 className="text-2xl font-bold text-neutral-900">{t('analytics.title')}</h1>
+      <h1 className="text-2xl font-bold text-neutral-900 dark:text-neutral-100">{t('analytics.title')}</h1>
 
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
         <StatCard label={t('analytics.totalOrders')} value={totalOrders} />
@@ -47,7 +47,7 @@ export default function Analytics() {
 
       <Card>
         <CardHeader className="flex items-center justify-between">
-          <h2 className="font-semibold text-neutral-900">
+          <h2 className="font-semibold text-neutral-900 dark:text-neutral-100">
             {t('analytics.qrScans')} / {t('analytics.linkClicks')}
           </h2>
           <div className="flex gap-1">
@@ -58,7 +58,7 @@ export default function Analytics() {
                 onClick={() => setRange(d as 7 | 30)}
                 className={clsx(
                   'rounded-full px-3 py-1 text-xs font-medium',
-                  range === d ? 'bg-brand-600 text-white' : 'bg-neutral-100 text-neutral-700',
+                  range === d ? 'bg-brand-600 text-white' : 'bg-neutral-100 text-neutral-700 dark:bg-neutral-800 dark:text-neutral-300',
                 )}
               >
                 {d === 7 ? t('analytics.last7days') : t('analytics.last30days')}
@@ -89,15 +89,15 @@ export default function Analytics() {
 
       <Card>
         <CardHeader>
-          <h2 className="font-semibold text-neutral-900">{t('analytics.orderHistory')}</h2>
+          <h2 className="font-semibold text-neutral-900 dark:text-neutral-100">{t('analytics.orderHistory')}</h2>
         </CardHeader>
         <CardBody className="overflow-x-auto">
           {loadingOrders ? (
             <Spinner />
           ) : (
-            <table className="w-full min-w-[500px] text-sm">
+            <table className="w-full min-w-[500px] text-sm dark:text-neutral-200">
               <thead>
-                <tr className="border-b border-neutral-200 text-left text-neutral-500">
+                <tr className="border-b border-neutral-200 text-left text-neutral-500 dark:border-neutral-800 dark:text-neutral-400">
                   <th className="py-2 pe-3 font-medium">{t('analytics.customer')}</th>
                   <th className="py-2 pe-3 font-medium">{t('orders.phone')}</th>
                   <th className="py-2 pe-3 font-medium">{t('common.date')}</th>
@@ -107,10 +107,10 @@ export default function Analytics() {
               </thead>
               <tbody>
                 {(orders ?? []).map((order) => (
-                  <tr key={order.id} className="border-b border-neutral-100">
+                  <tr key={order.id} className="border-b border-neutral-100 dark:border-neutral-800">
                     <td className="py-2 pe-3">{order.customer_name}</td>
                     <td className="py-2 pe-3">{order.customer_phone}</td>
-                    <td className="py-2 pe-3 text-neutral-500">{new Date(order.created_at).toLocaleDateString()}</td>
+                    <td className="py-2 pe-3 text-neutral-500 dark:text-neutral-400">{new Date(order.created_at).toLocaleDateString()}</td>
                     <td className="py-2 pe-3">
                       <OrderStatusBadge status={order.status} />
                     </td>
@@ -127,21 +127,21 @@ export default function Analytics() {
 
       <Card>
         <CardHeader>
-          <h2 className="font-semibold text-neutral-900">{t('analytics.customer')}</h2>
+          <h2 className="font-semibold text-neutral-900 dark:text-neutral-100">{t('analytics.customer')}</h2>
         </CardHeader>
         <CardBody className="overflow-x-auto">
-          <table className="w-full min-w-[350px] text-sm">
+          <table className="w-full min-w-[350px] text-sm dark:text-neutral-200">
             <thead>
-              <tr className="border-b border-neutral-200 text-left text-neutral-500">
+              <tr className="border-b border-neutral-200 text-left text-neutral-500 dark:border-neutral-800 dark:text-neutral-400">
                 <th className="py-2 pe-3 font-medium">{t('analytics.customer')}</th>
                 <th className="py-2 font-medium">{t('analytics.orders')}</th>
               </tr>
             </thead>
             <tbody>
               {customerRows.map((row) => (
-                <tr key={row.phone} className="border-b border-neutral-100">
+                <tr key={row.phone} className="border-b border-neutral-100 dark:border-neutral-800">
                   <td className="py-2 pe-3">
-                    {row.name} <span className="text-neutral-400">· {row.phone}</span>
+                    {row.name} <span className="text-neutral-400 dark:text-neutral-500">· {row.phone}</span>
                   </td>
                   <td className="py-2">{row.count}</td>
                 </tr>
@@ -158,8 +158,8 @@ function StatCard({ label, value }: { label: string; value: string | number }) {
   return (
     <Card>
       <CardBody>
-        <p className="text-xs text-neutral-500">{label}</p>
-        <p className="mt-1 text-xl font-bold text-neutral-900">{value}</p>
+        <p className="text-xs text-neutral-500 dark:text-neutral-400">{label}</p>
+        <p className="mt-1 text-xl font-bold text-neutral-900 dark:text-neutral-100">{value}</p>
       </CardBody>
     </Card>
   )

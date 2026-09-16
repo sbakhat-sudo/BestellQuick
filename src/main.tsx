@@ -7,6 +7,7 @@ import './index.css'
 import App from './App.tsx'
 import { queryClient } from '@/lib/queryClient'
 import { AuthProvider } from '@/context/AuthContext'
+import { ThemeProvider } from '@/context/ThemeContext'
 import { isSupabaseConfigured } from '@/lib/supabase'
 
 function ConfigError() {
@@ -29,16 +30,18 @@ function ConfigError() {
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    {isSupabaseConfigured ? (
-      <QueryClientProvider client={queryClient}>
-        <AuthProvider>
-          <BrowserRouter>
-            <App />
-          </BrowserRouter>
-        </AuthProvider>
-      </QueryClientProvider>
-    ) : (
-      <ConfigError />
-    )}
+    <ThemeProvider>
+      {isSupabaseConfigured ? (
+        <QueryClientProvider client={queryClient}>
+          <AuthProvider>
+            <BrowserRouter>
+              <App />
+            </BrowserRouter>
+          </AuthProvider>
+        </QueryClientProvider>
+      ) : (
+        <ConfigError />
+      )}
+    </ThemeProvider>
   </StrictMode>,
 )

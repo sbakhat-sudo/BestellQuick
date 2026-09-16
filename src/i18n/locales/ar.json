@@ -31,7 +31,9 @@
     "download": "تنزيل",
     "copyLink": "نسخ الرابط",
     "linkCopied": "تم نسخ الرابط!",
-    "logout": "تسجيل الخروج"
+    "logout": "تسجيل الخروج",
+    "switchToDark": "التبديل إلى الوضع الداكن",
+    "switchToLight": "التبديل إلى الوضع الفاتح"
   },
   "nav": {
     "overview": "نظرة عامة",

@@ -27,12 +27,12 @@ export default function Marketing() {
 
   return (
     <div className="flex flex-col gap-6">
-      <h1 className="text-2xl font-bold text-neutral-900">{t('marketing.title')}</h1>
+      <h1 className="text-2xl font-bold text-neutral-900 dark:text-neutral-100">{t('marketing.title')}</h1>
 
       {!enabled ? (
         <Card>
           <CardBody className="flex flex-col items-center gap-3 py-10 text-center">
-            <p className="text-neutral-600">{t('marketing.proOnly')}</p>
+            <p className="text-neutral-600 dark:text-neutral-400">{t('marketing.proOnly')}</p>
             <Link to="/dashboard/settings">
               <Button>{t('marketing.upgradeCta')}</Button>
             </Link>
@@ -42,7 +42,7 @@ export default function Marketing() {
         <>
           <Card>
             <CardHeader>
-              <h2 className="font-semibold text-neutral-900">{t('marketing.composeTitle')}</h2>
+              <h2 className="font-semibold text-neutral-900 dark:text-neutral-100">{t('marketing.composeTitle')}</h2>
             </CardHeader>
             <CardBody>
               <form onSubmit={onSubmit} className="flex flex-col gap-4">
@@ -68,19 +68,19 @@ export default function Marketing() {
 
           <Card>
             <CardHeader>
-              <h2 className="font-semibold text-neutral-900">{t('marketing.history')}</h2>
+              <h2 className="font-semibold text-neutral-900 dark:text-neutral-100">{t('marketing.history')}</h2>
             </CardHeader>
             <CardBody>
               {isLoading ? (
                 <Spinner />
               ) : !campaigns || campaigns.length === 0 ? (
-                <p className="text-sm text-neutral-500">{t('marketing.noCampaigns')}</p>
+                <p className="text-sm text-neutral-500 dark:text-neutral-400">{t('marketing.noCampaigns')}</p>
               ) : (
-                <ul className="flex flex-col divide-y divide-neutral-100">
+                <ul className="flex flex-col divide-y divide-neutral-100 dark:divide-neutral-800">
                   {campaigns.map((c) => (
                     <li key={c.id} className="py-2">
-                      <p className="text-sm text-neutral-900">{c.message}</p>
-                      <p className="text-xs text-neutral-500">
+                      <p className="text-sm text-neutral-900 dark:text-neutral-100">{c.message}</p>
+                      <p className="text-xs text-neutral-500 dark:text-neutral-400">
                         {c.sent_at ? new Date(c.sent_at).toLocaleString() : t('marketing.sending')} · {c.recipients_count}{' '}
                         {t('marketing.recipients')}
                       </p>

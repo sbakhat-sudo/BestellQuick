@@ -44,16 +44,18 @@ export function MiniCalendar({ onSelectDay }: MiniCalendarProps) {
         <button
           type="button"
           onClick={() => setVisibleMonth((m) => addMonths(m, -1))}
-          className="flex size-6 items-center justify-center rounded-full text-neutral-500 hover:bg-neutral-100"
+          className="flex size-6 items-center justify-center rounded-full text-neutral-500 hover:bg-neutral-100 dark:text-neutral-400 dark:hover:bg-neutral-800"
           aria-label="Mois précédent"
         >
           ‹
         </button>
-        <p className="text-sm font-medium capitalize text-neutral-700">{format(visibleMonth, 'MMMM yyyy', { locale: fr })}</p>
+        <p className="text-sm font-medium capitalize text-neutral-700 dark:text-neutral-300">
+          {format(visibleMonth, 'MMMM yyyy', { locale: fr })}
+        </p>
         <button
           type="button"
           onClick={() => setVisibleMonth((m) => addMonths(m, 1))}
-          className="flex size-6 items-center justify-center rounded-full text-neutral-500 hover:bg-neutral-100"
+          className="flex size-6 items-center justify-center rounded-full text-neutral-500 hover:bg-neutral-100 dark:text-neutral-400 dark:hover:bg-neutral-800"
           aria-label="Mois suivant"
         >
           ›
@@ -61,7 +63,7 @@ export function MiniCalendar({ onSelectDay }: MiniCalendarProps) {
       </div>
       <div className="grid grid-cols-7 gap-y-1 text-center text-xs">
         {WEEKDAY_LABELS.map((label) => (
-          <span key={label} className="font-medium text-neutral-400">
+          <span key={label} className="font-medium text-neutral-400 dark:text-neutral-500">
             {label}
           </span>
         ))}
@@ -75,8 +77,8 @@ export function MiniCalendar({ onSelectDay }: MiniCalendarProps) {
               isSameDay(day, today)
                 ? 'bg-brand-600 font-semibold text-white'
                 : isSameMonth(day, visibleMonth)
-                  ? 'text-neutral-700 hover:bg-neutral-100'
-                  : 'text-neutral-300 hover:bg-neutral-50',
+                  ? 'text-neutral-700 hover:bg-neutral-100 dark:text-neutral-300 dark:hover:bg-neutral-800'
+                  : 'text-neutral-300 hover:bg-neutral-50 dark:text-neutral-700 dark:hover:bg-neutral-900',
             )}
           >
             {format(day, 'd')}

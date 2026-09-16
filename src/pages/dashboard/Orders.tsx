@@ -35,7 +35,7 @@ export default function Orders() {
 
   return (
     <div className="flex flex-col gap-6">
-      <h1 className="text-2xl font-bold text-neutral-900">{t('orders.title')}</h1>
+      <h1 className="text-2xl font-bold text-neutral-900 dark:text-neutral-100">{t('orders.title')}</h1>
 
       <div className="flex flex-wrap items-center gap-3">
         <Input
@@ -50,7 +50,7 @@ export default function Orders() {
           className="max-w-sm"
         />
         {date && (
-          <span className="flex items-center gap-2 rounded-full bg-neutral-100 px-3 py-1.5 text-sm font-medium text-neutral-700">
+          <span className="flex items-center gap-2 rounded-full bg-neutral-100 px-3 py-1.5 text-sm font-medium text-neutral-700 dark:bg-neutral-800 dark:text-neutral-300">
             {new Date(date).toLocaleDateString()}
             <button
               type="button"
@@ -59,7 +59,7 @@ export default function Orders() {
                 next.delete('date')
                 setSearchParams(next)
               }}
-              className="text-neutral-500 hover:text-neutral-900"
+              className="text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100"
               aria-label={t('common.cancel')}
             >
               ×
@@ -74,7 +74,7 @@ export default function Orders() {
           onClick={() => setFilter('all')}
           className={clsx(
             'rounded-full px-3 py-1.5 text-sm font-medium',
-            filter === 'all' ? 'bg-brand-600 text-white' : 'bg-neutral-100 text-neutral-700',
+            filter === 'all' ? 'bg-brand-600 text-white' : 'bg-neutral-100 text-neutral-700 dark:bg-neutral-800 dark:text-neutral-300',
           )}
         >
           {t('orders.filterAll')}
@@ -86,7 +86,7 @@ export default function Orders() {
             onClick={() => setFilter(s)}
             className={clsx(
               'rounded-full px-3 py-1.5 text-sm font-medium',
-              filter === s ? 'bg-brand-600 text-white' : 'bg-neutral-100 text-neutral-700',
+              filter === s ? 'bg-brand-600 text-white' : 'bg-neutral-100 text-neutral-700 dark:bg-neutral-800 dark:text-neutral-300',
             )}
           >
             {t(`orders.status.${s}`)}
@@ -97,7 +97,7 @@ export default function Orders() {
       {isLoading ? (
         <Spinner />
       ) : filtered.length === 0 ? (
-        <p className="text-neutral-500">{t('orders.noOrders')}</p>
+        <p className="text-neutral-500 dark:text-neutral-400">{t('orders.noOrders')}</p>
       ) : (
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-3">
           {filtered.map((order) => (

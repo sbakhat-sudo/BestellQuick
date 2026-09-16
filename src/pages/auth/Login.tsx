@@ -55,9 +55,9 @@ export default function Login() {
           {t('auth.loginCta')}
         </Button>
       </form>
-      <p className="mt-4 text-center text-sm text-neutral-600">
+      <p className="mt-4 text-center text-sm text-neutral-600 dark:text-neutral-400">
         {t('auth.noAccount')}{' '}
-        <Link to="/signup" className="font-semibold text-brand-700 hover:underline">
+        <Link to="/signup" className="font-semibold text-brand-700 hover:underline dark:text-brand-400">
           {t('auth.signupLink')}
         </Link>
       </p>

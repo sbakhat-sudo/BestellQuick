@@ -3,7 +3,7 @@ import { LanguageToggle } from './LanguageToggle'
 
 export function PublicHeader({ restaurant }: { restaurant: Restaurant }) {
   return (
-    <header className="border-b border-neutral-200 bg-white">
+    <header className="border-b border-neutral-200 bg-white dark:border-neutral-800 dark:bg-neutral-900">
       {restaurant.cover_photo_url && (
         <div className="h-32 w-full overflow-hidden sm:h-44">
           <img src={restaurant.cover_photo_url} alt="" className="size-full object-cover" />
@@ -20,8 +20,8 @@ export function PublicHeader({ restaurant }: { restaurant: Restaurant }) {
             </span>
           )}
           <div>
-            <h1 className="text-lg font-bold text-neutral-900">{restaurant.name}</h1>
-            {restaurant.address && <p className="text-xs text-neutral-500">{restaurant.address}</p>}
+            <h1 className="text-lg font-bold text-neutral-900 dark:text-neutral-100">{restaurant.name}</h1>
+            {restaurant.address && <p className="text-xs text-neutral-500 dark:text-neutral-400">{restaurant.address}</p>}
           </div>
         </div>
         <LanguageToggle />

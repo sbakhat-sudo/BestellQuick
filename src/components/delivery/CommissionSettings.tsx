@@ -22,7 +22,7 @@ export function CommissionSettings() {
   return (
     <Card>
       <CardHeader>
-        <h2 className="font-semibold text-neutral-900">{t('settings.deliveryCommissionTitle')}</h2>
+        <h2 className="font-semibold text-neutral-900 dark:text-neutral-100">{t('settings.deliveryCommissionTitle')}</h2>
       </CardHeader>
       <CardBody className="flex flex-wrap items-end gap-3">
         <Select label={t('delivery.commissionType')} value={type} onChange={(e) => setType(e.target.value as CommissionType)} className="w-56">

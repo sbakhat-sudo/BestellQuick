@@ -12,7 +12,7 @@ export function LanguageToggle({ className = '' }: { className?: string }) {
     <div
       role="group"
       aria-label={t('common.language')}
-      className={`inline-flex items-center rounded-full border border-neutral-200 bg-white p-0.5 text-sm ${className}`}
+      className={`inline-flex items-center rounded-full border border-neutral-200 bg-white p-0.5 text-sm dark:border-neutral-700 dark:bg-neutral-900 ${className}`}
     >
       {LANGS.map((lang) => {
         const active = i18n.resolvedLanguage === lang.code
@@ -23,7 +23,7 @@ export function LanguageToggle({ className = '' }: { className?: string }) {
             onClick={() => i18n.changeLanguage(lang.code)}
             aria-pressed={active}
             className={`rounded-full px-3 py-1 font-medium transition-colors ${
-              active ? 'bg-brand-600 text-white' : 'text-neutral-600 hover:bg-neutral-100'
+              active ? 'bg-brand-600 text-white' : 'text-neutral-600 hover:bg-neutral-100 dark:text-neutral-400 dark:hover:bg-neutral-800'
             }`}
           >
             {lang.label}

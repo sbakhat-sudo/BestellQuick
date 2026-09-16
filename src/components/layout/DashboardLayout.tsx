@@ -6,6 +6,7 @@ import { useAuth } from '@/context/AuthContext'
 import { useCurrentRestaurant } from '@/context/RestaurantContext'
 import { LanguageToggle } from './LanguageToggle'
 import { Badge } from '@/components/ui/Badge'
+import { ThemeToggle } from '@/components/ui/ThemeToggle'
 
 const NAV_ITEMS: { to: string; end: boolean; key: string }[] = [
   { to: '/dashboard', end: true, key: 'overview' },
@@ -30,7 +31,7 @@ function NavLinks({ onNavigate }: { onNavigate?: () => void }) {
           className={({ isActive }) =>
             clsx(
               'rounded-lg px-3 py-2 text-sm font-medium transition-colors',
-              isActive ? 'bg-brand-600 text-white' : 'text-neutral-700 hover:bg-neutral-100',
+              isActive ? 'bg-brand-600 text-white' : 'text-neutral-700 hover:bg-neutral-100 dark:text-neutral-300 dark:hover:bg-neutral-800',
             )
           }
         >
@@ -51,13 +52,13 @@ function RestaurantFooter() {
   const planLabel = t(`settings.plan${restaurant.plan[0].toUpperCase()}${restaurant.plan.slice(1)}`)
 
   return (
-    <div className="flex items-center gap-2.5 border-t border-neutral-100 px-1 pt-3">
+    <div className="flex items-center gap-2.5 border-t border-neutral-100 px-1 pt-3 dark:border-neutral-800">
       <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-brand-600 text-sm font-bold text-white">
         {restaurant.name.charAt(0).toUpperCase()}
       </span>
       <div className="min-w-0">
-        <p className="truncate text-sm font-semibold text-neutral-900">{restaurant.name}</p>
-        <p className="truncate text-xs text-neutral-500">
+        <p className="truncate text-sm font-semibold text-neutral-900 dark:text-neutral-100">{restaurant.name}</p>
+        <p className="truncate text-xs text-neutral-500 dark:text-neutral-400">
           {t('nav.settings')} · {planLabel}
         </p>
       </div>
@@ -102,12 +103,12 @@ export function DashboardLayout(): ReactNode {
   }
 
   return (
-    <div className="min-h-screen bg-neutral-50">
-      <header className="sticky top-0 z-30 flex items-center justify-between gap-3 border-b border-neutral-200 bg-white px-4 py-3 sm:px-6">
+    <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950">
+      <header className="sticky top-0 z-30 flex items-center justify-between gap-3 border-b border-neutral-200 bg-white px-4 py-3 sm:px-6 dark:border-neutral-800 dark:bg-neutral-900">
         <div className="flex items-center gap-3">
           <button
             type="button"
-            className="rounded-lg p-2 hover:bg-neutral-100 md:hidden"
+            className="rounded-lg p-2 hover:bg-neutral-100 md:hidden dark:hover:bg-neutral-800"
             aria-label="menu"
             aria-expanded={mobileOpen}
             onClick={() => setMobileOpen((v) => !v)}
@@ -116,7 +117,7 @@ export function DashboardLayout(): ReactNode {
           </button>
           <div className="flex items-center gap-1.5">
             <LogoMark />
-            <span className="font-brand text-2xl font-extrabold tracking-tight text-neutral-900">Vite-Fait</span>
+            <span className="font-brand text-2xl font-extrabold tracking-tight text-neutral-900 dark:text-neutral-100">Vite-Fait</span>
           </div>
           <Badge tone={restaurant.is_open ? 'success' : 'danger'} className="hidden sm:inline-flex">
             {restaurant.is_open ? t('dashboard.overview.open') : t('dashboard.overview.closed')}
@@ -133,28 +134,33 @@ export function DashboardLayout(): ReactNode {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder={t('dashboard.overview.searchPlaceholder')}
-              className="w-full rounded-full border border-neutral-200 bg-neutral-50 py-2 ps-9 pe-4 text-sm text-neutral-700 placeholder:text-neutral-400 focus:border-brand-400 focus:bg-white"
+              className="w-full rounded-full border border-neutral-200 bg-neutral-50 py-2 ps-9 pe-4 text-sm text-neutral-700 placeholder:text-neutral-400 focus:border-brand-400 focus:bg-white dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-200 dark:focus:bg-neutral-900"
             />
           </label>
         </form>
 
         <div className="flex items-center gap-3">
+          <ThemeToggle />
           <NavLink
             to="/dashboard/settings"
             aria-label={t('nav.settings')}
-            className="rounded-full p-2 text-neutral-500 hover:bg-neutral-100 hover:text-neutral-700"
+            className="rounded-full p-2 text-neutral-500 hover:bg-neutral-100 hover:text-neutral-700 dark:text-neutral-400 dark:hover:bg-neutral-800 dark:hover:text-neutral-100"
           >
             <SettingsIcon />
           </NavLink>
           <LanguageToggle className="hidden sm:inline-flex" />
-          <button type="button" onClick={signOut} className="text-sm font-medium text-neutral-600 hover:text-neutral-900">
+          <button
+            type="button"
+            onClick={signOut}
+            className="text-sm font-medium text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100"
+          >
             {t('common.logout')}
           </button>
         </div>
       </header>
 
       <div className="mx-auto flex max-w-7xl">
-        <aside className="sticky top-[57px] hidden h-[calc(100svh-57px)] w-56 shrink-0 flex-col justify-between border-r border-neutral-200 bg-white p-3 md:flex">
+        <aside className="sticky top-[57px] hidden h-[calc(100svh-57px)] w-56 shrink-0 flex-col justify-between border-r border-neutral-200 bg-white p-3 md:flex dark:border-neutral-800 dark:bg-neutral-900">
           <NavLinks />
           <RestaurantFooter />
         </aside>
@@ -162,17 +168,18 @@ export function DashboardLayout(): ReactNode {
         {mobileOpen && (
           <div className="fixed inset-0 z-20 bg-black/30 md:hidden" onClick={() => setMobileOpen(false)}>
             <div
-              className="flex h-full w-64 flex-col justify-between bg-white p-3 shadow-lg"
+              className="flex h-full w-64 flex-col justify-between bg-white p-3 shadow-lg dark:bg-neutral-900"
               onClick={(e) => e.stopPropagation()}
             >
               <div>
                 <div className="mb-3 flex items-center gap-1.5 px-1">
                   <LogoMark />
-                  <span className="font-brand text-2xl font-extrabold tracking-tight text-neutral-900">Vite-Fait</span>
+                  <span className="font-brand text-2xl font-extrabold tracking-tight text-neutral-900 dark:text-neutral-100">Vite-Fait</span>
                 </div>
                 <NavLinks onNavigate={() => setMobileOpen(false)} />
-                <div className="mt-3 px-1">
+                <div className="mt-3 flex items-center gap-1 px-1">
                   <LanguageToggle />
+                  <ThemeToggle />
                 </div>
               </div>
               <RestaurantFooter />

@@ -23,9 +23,9 @@ export function OrderCard({ order }: { order: OrderWithItems }) {
       <CardBody className="flex flex-col gap-3">
         <div className="flex flex-wrap items-start justify-between gap-2">
           <div>
-            <p className="font-semibold text-neutral-900">{order.customer_name}</p>
-            <p className="text-xs text-neutral-500">{order.customer_phone}</p>
-            <p className="text-xs text-neutral-400">{new Date(order.created_at).toLocaleString()}</p>
+            <p className="font-semibold text-neutral-900 dark:text-neutral-100">{order.customer_name}</p>
+            <p className="text-xs text-neutral-500 dark:text-neutral-400">{order.customer_phone}</p>
+            <p className="text-xs text-neutral-400 dark:text-neutral-500">{new Date(order.created_at).toLocaleString()}</p>
           </div>
           <div className="flex flex-col items-end gap-1">
             <OrderStatusBadge status={order.status} />
@@ -33,7 +33,7 @@ export function OrderCard({ order }: { order: OrderWithItems }) {
           </div>
         </div>
 
-        <ul className="flex flex-col gap-0.5 border-y border-neutral-100 py-2 text-sm text-neutral-700">
+        <ul className="flex flex-col gap-0.5 border-y border-neutral-100 py-2 text-sm text-neutral-700 dark:border-neutral-800 dark:text-neutral-300">
           {order.order_items.map((line, i) => (
             <li key={i} className="flex justify-between">
               <span>
@@ -45,15 +45,15 @@ export function OrderCard({ order }: { order: OrderWithItems }) {
         </ul>
 
         <div className="flex items-center justify-between">
-          <span className="text-sm text-neutral-500">{t('orders.total')}</span>
-          <span className="font-semibold">
+          <span className="text-sm text-neutral-500 dark:text-neutral-400">{t('orders.total')}</span>
+          <span className="font-semibold dark:text-neutral-100">
             {Number(order.total_price).toFixed(2)} {t('common.currency')}
           </span>
         </div>
 
         {order.order_type === 'delivery' && (
-          <div className="flex flex-col gap-2 rounded-lg bg-neutral-50 p-3">
-            <p className="text-xs font-semibold uppercase text-neutral-500">{t('orders.assignDriver')}</p>
+          <div className="flex flex-col gap-2 rounded-lg bg-neutral-50 p-3 dark:bg-neutral-800/50">
+            <p className="text-xs font-semibold uppercase text-neutral-500 dark:text-neutral-400">{t('orders.assignDriver')}</p>
             <div className="flex flex-wrap items-center gap-2">
               <Select
                 value={delivery?.driver_id ?? ''}
@@ -78,10 +78,10 @@ export function OrderCard({ order }: { order: OrderWithItems }) {
                 placeholder={t('delivery.distanceKm')}
                 value={distanceKm}
                 onChange={(e) => setDistanceKm(e.target.value)}
-                className="w-28 rounded-lg border border-neutral-300 px-2 py-1.5 text-sm"
+                className="w-28 rounded-lg border border-neutral-300 px-2 py-1.5 text-sm dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-100"
               />
               {delivery && (
-                <span className="text-xs text-neutral-500">
+                <span className="text-xs text-neutral-500 dark:text-neutral-400">
                   {t('orders.commission')}: {Number(delivery.commission_amount).toFixed(2)} {t('common.currency')}
                 </span>
               )}

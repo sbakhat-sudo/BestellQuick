@@ -35,9 +35,12 @@ export function OnboardingGate({ children }: { children: ReactNode }) {
     }
 
     return (
-      <div className="flex min-h-screen items-center justify-center bg-neutral-50 px-4">
-        <form onSubmit={onSubmit} className="w-full max-w-sm rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm">
-          <h1 className="mb-4 text-lg font-bold text-neutral-900">{t('auth.signupTitle')}</h1>
+      <div className="flex min-h-screen items-center justify-center bg-neutral-50 px-4 dark:bg-neutral-950">
+        <form
+          onSubmit={onSubmit}
+          className="w-full max-w-sm rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm dark:border-neutral-800 dark:bg-neutral-900"
+        >
+          <h1 className="mb-4 text-lg font-bold text-neutral-900 dark:text-neutral-100">{t('auth.signupTitle')}</h1>
           <Input label={t('auth.restaurantName')} required value={name} onChange={(e) => setName(e.target.value)} />
           {error && (
             <p role="alert" className="mt-2 text-sm text-red-600">

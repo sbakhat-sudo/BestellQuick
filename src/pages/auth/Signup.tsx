@@ -57,8 +57,8 @@ export default function Signup() {
   if (checkEmail) {
     return (
       <AuthLayout title={t('auth.signupTitle')}>
-        <p className="text-sm text-neutral-700">{t('auth.checkEmail')}</p>
-        <Link to="/login" className="mt-4 inline-block text-sm font-semibold text-brand-700 hover:underline">
+        <p className="text-sm text-neutral-700 dark:text-neutral-300">{t('auth.checkEmail')}</p>
+        <Link to="/login" className="mt-4 inline-block text-sm font-semibold text-brand-700 hover:underline dark:text-brand-400">
           {t('auth.loginLink')}
         </Link>
       </AuthLayout>
@@ -101,9 +101,9 @@ export default function Signup() {
           {t('auth.signupCta')}
         </Button>
       </form>
-      <p className="mt-4 text-center text-sm text-neutral-600">
+      <p className="mt-4 text-center text-sm text-neutral-600 dark:text-neutral-400">
         {t('auth.haveAccount')}{' '}
-        <Link to="/login" className="font-semibold text-brand-700 hover:underline">
+        <Link to="/login" className="font-semibold text-brand-700 hover:underline dark:text-brand-400">
           {t('auth.loginLink')}
         </Link>
       </p>

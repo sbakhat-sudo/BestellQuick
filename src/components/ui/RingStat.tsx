@@ -13,7 +13,7 @@ const STROKE = 8
 const RADIUS = (SIZE - STROKE) / 2
 const CIRCUMFERENCE = 2 * Math.PI * RADIUS
 
-export function RingStat({ percent, icon, colorFrom, colorTo, trackColor = '#e5e5e5' }: RingStatProps) {
+export function RingStat({ percent, icon, colorFrom, colorTo, trackColor = 'var(--ring-track-color, #e5e5e5)' }: RingStatProps) {
   const clamped = Math.max(0, Math.min(100, percent))
   const offset = CIRCUMFERENCE - (clamped / 100) * CIRCUMFERENCE
   const gradientId = `ring-gradient-${colorFrom.replace('#', '')}-${colorTo.replace('#', '')}`
@@ -42,7 +42,7 @@ export function RingStat({ percent, icon, colorFrom, colorTo, trackColor = '#e5e
       </svg>
       <div className="absolute inset-0 flex flex-col items-center justify-center gap-0.5">
         <span aria-hidden="true">{icon}</span>
-        <span className="text-xs font-semibold text-neutral-500">{Math.round(clamped)}%</span>
+        <span className="text-xs font-semibold text-neutral-500 dark:text-neutral-400">{Math.round(clamped)}%</span>
       </div>
     </div>
   )

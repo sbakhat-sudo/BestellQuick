@@ -30,11 +30,11 @@ export default function Settings() {
 
   return (
     <div className="flex flex-col gap-6">
-      <h1 className="text-2xl font-bold text-neutral-900">{t('settings.title')}</h1>
+      <h1 className="text-2xl font-bold text-neutral-900 dark:text-neutral-100">{t('settings.title')}</h1>
 
       <Card>
         <CardHeader>
-          <h2 className="font-semibold text-neutral-900">{t('settings.restaurantInfo')}</h2>
+          <h2 className="font-semibold text-neutral-900 dark:text-neutral-100">{t('settings.restaurantInfo')}</h2>
         </CardHeader>
         <CardBody>
           <form onSubmit={onSaveInfo} className="flex flex-col gap-4">
@@ -54,7 +54,7 @@ export default function Settings() {
                 }}
               />
             </div>
-            <p className="-mt-2 text-xs text-neutral-400">{t('settings.logoHint')}</p>
+            <p className="-mt-2 text-xs text-neutral-400 dark:text-neutral-500">{t('settings.logoHint')}</p>
             <Input label={t('settings.name')} required value={name} onChange={(e) => setName(e.target.value)} />
             <Input label={t('settings.address')} value={address} onChange={(e) => setAddress(e.target.value)} />
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -72,10 +72,10 @@ export default function Settings() {
 
       <Card>
         <CardHeader className="flex items-center justify-between">
-          <h2 className="font-semibold text-neutral-900">{t('settings.openClosedTitle')}</h2>
+          <h2 className="font-semibold text-neutral-900 dark:text-neutral-100">{t('settings.openClosedTitle')}</h2>
         </CardHeader>
         <CardBody className="flex items-center justify-between gap-4">
-          <p className="text-sm text-neutral-500">{t('settings.openClosedDesc')}</p>
+          <p className="text-sm text-neutral-500 dark:text-neutral-400">{t('settings.openClosedDesc')}</p>
           <Toggle
             checked={restaurant.is_open}
             onChange={(checked) => updateRestaurant.mutate({ is_open: checked })}
@@ -87,7 +87,7 @@ export default function Settings() {
 
       <Card>
         <CardHeader>
-          <h2 className="font-semibold text-neutral-900">{t('settings.qrLinkTitle')}</h2>
+          <h2 className="font-semibold text-neutral-900 dark:text-neutral-100">{t('settings.qrLinkTitle')}</h2>
         </CardHeader>
         <CardBody>
           <RestaurantQrCode slug={restaurant.slug} />
