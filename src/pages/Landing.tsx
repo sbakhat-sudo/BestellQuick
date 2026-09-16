@@ -65,7 +65,7 @@ export default function Landing() {
       >
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
           <div className="flex items-center gap-1.5 text-neutral-900 dark:text-neutral-100">
-            <img src="/logo.png" alt="BestellQuick" className="size-11 shrink-0 object-contain" />
+            <img src="/logo.png" alt="BestellQuick" className="h-11 w-auto shrink-0 object-contain" />
             <span className="font-brand text-2xl font-extrabold tracking-tight text-neutral-900 dark:text-neutral-100">
               {t('app.name')}
             </span>
@@ -101,7 +101,7 @@ export default function Landing() {
             />
           </div>
 
-          <img src="/logo.png" alt="" className="animate-float mx-auto mb-6 size-20 object-contain drop-shadow-lg" aria-hidden="true" />
+          <img src="/logo.png" alt="" className="animate-float mx-auto mb-6 h-28 w-auto object-contain drop-shadow-lg" aria-hidden="true" />
 
           <h1 className="animate-fade-in-up mx-auto max-w-3xl text-3xl font-bold tracking-tight text-neutral-900 sm:text-5xl dark:text-neutral-100">
             {t('landing.heroTitle')}

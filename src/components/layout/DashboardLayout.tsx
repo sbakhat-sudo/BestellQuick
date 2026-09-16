@@ -124,7 +124,7 @@ function NavLinks({ onNavigate, collapsed }: { onNavigate?: () => void; collapse
 }
 
 function LogoMark() {
-  return <img src="/logo.png" alt="BestellQuick" className="size-11 shrink-0 object-contain" />
+  return <img src="/logo.png" alt="BestellQuick" className="h-11 w-auto shrink-0 object-contain" />
 }
 
 function RestaurantFooter({ collapsed }: { collapsed?: boolean }) {
