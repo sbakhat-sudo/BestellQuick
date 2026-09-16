@@ -121,7 +121,18 @@
     "categoryPlaceholder": "Ex : Entrées, Plats, Desserts...",
     "itemAdded": "Plat ajouté",
     "itemUpdated": "Plat mis à jour",
-    "itemDeleted": "Plat supprimé"
+    "itemDeleted": "Plat supprimé",
+    "ai": {
+      "importWithAi": "Importer avec l'IA",
+      "title": "Importer un menu avec l'IA",
+      "description": "Prenez en photo votre menu (une ou plusieurs pages) et l'IA en extrait automatiquement les plats, prix et catégories.",
+      "addPhotos": "Ajouter des photos",
+      "analyze": "Analyser",
+      "reviewHint": "Vérifiez et corrigez les plats détectés avant de les ajouter à votre menu.",
+      "noItemsFound": "Aucun plat n'a pu être détecté sur ces photos. Essayez avec des photos plus nettes.",
+      "itemN": "Plat {{n}}",
+      "importSelected": "Importer ({{count}})"
+    }
   },
   "orders": {
     "title": "Commandes en direct",
