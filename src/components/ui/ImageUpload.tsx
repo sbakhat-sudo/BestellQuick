@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Button } from './Button'
+import { getErrorMessage } from '@/lib/errors'
 
 interface ImageUploadProps {
   label: string
@@ -24,7 +25,7 @@ export function ImageUpload({ label, value, onUpload }: ImageUploadProps) {
     } catch (err) {
       // eslint-disable-next-line no-console
       console.error('Image upload failed:', err)
-      setError(err instanceof Error ? err.message : t('common.error'))
+      setError(getErrorMessage(err, t('common.error')))
     } finally {
       setUploading(false)
       if (inputRef.current) inputRef.current.value = ''
