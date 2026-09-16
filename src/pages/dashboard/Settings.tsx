@@ -12,7 +12,6 @@ import { ImageUpload } from '@/components/ui/ImageUpload'
 import { RestaurantQrCode } from '@/components/dashboard/RestaurantQrCode'
 import { DeliveryDriversSection } from '@/components/delivery/DeliveryDriversSection'
 import { CommissionSettings } from '@/components/delivery/CommissionSettings'
-import { BillingSection } from '@/components/settings/BillingSection'
 import { WeeklyHoursSettings } from '@/components/settings/WeeklyHoursSettings'
 
 export default function Settings() {
@@ -129,7 +128,6 @@ export default function Settings() {
 
       <CommissionSettings />
       <DeliveryDriversSection />
-      <BillingSection />
     </div>
   )
 }

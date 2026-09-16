@@ -48,11 +48,12 @@ function OffersNavIcon() {
   )
 }
 
-function MarketingNavIcon() {
+function SubscriptionsNavIcon() {
   return (
     <svg viewBox="0 0 24 24" fill="none" className="size-5 shrink-0" aria-hidden="true">
-      <path d="M3 10v4a1 1 0 0 0 1 1h2l6 4V5L6 9H4a1 1 0 0 0-1 1Z" stroke="currentColor" strokeWidth="1.7" strokeLinejoin="round" />
-      <path d="M17 9.5a3 3 0 0 1 0 5M19.5 7a6.5 6.5 0 0 1 0 10" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
+      <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" strokeWidth="1.7" />
+      <path d="M3 10h18" stroke="currentColor" strokeWidth="1.7" />
+      <path d="M7 14.5h4" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
     </svg>
   )
 }
@@ -85,7 +86,7 @@ const NAV_ITEMS: { to: string; end: boolean; key: string; Icon: () => ReactEleme
   { to: '/dashboard/menu', end: false, key: 'menu', Icon: MenuNavIcon },
   { to: '/dashboard/orders', end: false, key: 'orders', Icon: OrdersNavIcon },
   { to: '/dashboard/offers', end: false, key: 'offers', Icon: OffersNavIcon },
-  { to: '/dashboard/marketing', end: false, key: 'marketing', Icon: MarketingNavIcon },
+  { to: '/dashboard/subscriptions', end: false, key: 'subscriptions', Icon: SubscriptionsNavIcon },
   { to: '/dashboard/analytics', end: false, key: 'analytics', Icon: AnalyticsNavIcon },
   { to: '/dashboard/settings', end: false, key: 'settings', Icon: SettingsNavIcon },
 ]

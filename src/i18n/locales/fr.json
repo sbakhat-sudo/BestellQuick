@@ -42,7 +42,7 @@
     "menu": "Menu",
     "orders": "Commandes",
     "offers": "Offres",
-    "marketing": "Marketing",
+    "subscriptions": "Abonnements",
     "analytics": "Statistiques",
     "settings": "Paramètres"
   },
@@ -180,21 +180,13 @@
     "distanceKm": "Distance (km)",
     "assign": "Assigner"
   },
-  "marketing": {
-    "title": "Campagnes WhatsApp",
-    "proOnly": "Fonctionnalité réservée aux plans Pro et Annuel.",
-    "upgradeCta": "Passer au plan Pro",
-    "composeTitle": "Nouvelle campagne",
-    "message": "Message",
-    "targetSegment": "Cible",
-    "segmentAll": "Tous les clients",
-    "segmentInactive": "Clients inactifs (30+ jours)",
-    "send": "Envoyer la campagne",
-    "sending": "Envoi en cours...",
-    "history": "Historique des campagnes",
-    "noCampaigns": "Aucune campagne envoyée.",
-    "recipients": "destinataires",
-    "sentAt": "Envoyée le"
+  "subscriptions": {
+    "title": "Abonnements",
+    "subtitle": "Choisissez le plan qui correspond à votre restaurant.",
+    "currentPlanBadge": "Votre plan",
+    "orderLimit": "{{count}} commandes/mois",
+    "chooseThisPlan": "Choisir ce plan",
+    "active": "Plan actif"
   },
   "analytics": {
     "title": "Statistiques",
