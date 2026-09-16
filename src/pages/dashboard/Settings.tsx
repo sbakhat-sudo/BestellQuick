@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { useCurrentRestaurant } from '@/context/RestaurantContext'
 import { useUpdateRestaurant } from '@/hooks/useUpdateRestaurant'
 import { uploadRestaurantAsset } from '@/lib/storage'
+import { getErrorMessage } from '@/lib/errors'
 import { Card, CardBody, CardHeader } from '@/components/ui/Card'
 import { Input } from '@/components/ui/Input'
 import { Button } from '@/components/ui/Button'
@@ -37,7 +38,7 @@ export default function Settings() {
     } catch (err) {
       // eslint-disable-next-line no-console
       console.error('Failed to save restaurant info:', err)
-      setInfoError(err instanceof Error ? err.message : t('common.error'))
+      setInfoError(getErrorMessage(err, t('common.error')))
     }
   }
 
