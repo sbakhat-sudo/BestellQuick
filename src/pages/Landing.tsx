@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, type ReactElement } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { LanguageToggle } from '@/components/layout/LanguageToggle'
@@ -7,7 +7,41 @@ import { Button } from '@/components/ui/Button'
 import { PLAN_LIMITS } from '@/lib/plans'
 import { useRevealOnScroll } from '@/hooks/useRevealOnScroll'
 
-const FEATURES = ['feature1', 'feature2', 'feature3'] as const
+const FEATURES = [
+  { key: 'feature1', gradient: 'from-amber-400 to-orange-500' },
+  { key: 'feature2', gradient: 'from-teal-400 to-sky-500' },
+  { key: 'feature3', gradient: 'from-sky-400 to-indigo-500' },
+] as const
+
+function QrIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className="size-6 text-white" aria-hidden="true">
+      <rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" strokeWidth="1.8" />
+      <rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" strokeWidth="1.8" />
+      <rect x="3" y="14" width="7" height="7" rx="1" stroke="currentColor" strokeWidth="1.8" />
+      <path d="M14 14h3v3h-3zM19 14h2M14 19h2M19 19h2" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+    </svg>
+  )
+}
+
+function PulseIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className="size-6 text-white" aria-hidden="true">
+      <path d="M3 12h4l2 7 4-14 2 7h6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  )
+}
+
+function LockIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className="size-6 text-white" aria-hidden="true">
+      <rect x="4" y="10" width="16" height="10" rx="2" stroke="currentColor" strokeWidth="1.8" />
+      <path d="M7.5 10V7a4.5 4.5 0 0 1 9 0v3" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+    </svg>
+  )
+}
+
+const FEATURE_ICONS = { feature1: QrIcon, feature2: PulseIcon, feature3: LockIcon }
 
 export default function Landing() {
   const { t } = useTranslation()
@@ -90,7 +124,14 @@ export default function Landing() {
             <h2 className="mb-10 text-center text-2xl font-bold text-neutral-900 dark:text-neutral-100">{t('landing.featuresTitle')}</h2>
             <div className="grid grid-cols-1 gap-8 sm:grid-cols-3">
               {FEATURES.map((f, i) => (
-                <FeatureCard key={f} title={t(`landing.${f}Title`)} desc={t(`landing.${f}Desc`)} delay={i * 0.12} />
+                <FeatureCard
+                  key={f.key}
+                  title={t(`landing.${f.key}Title`)}
+                  desc={t(`landing.${f.key}Desc`)}
+                  gradient={f.gradient}
+                  Icon={FEATURE_ICONS[f.key]}
+                  delay={i * 0.12}
+                />
               ))}
             </div>
           </div>
@@ -113,7 +154,19 @@ export default function Landing() {
   )
 }
 
-function FeatureCard({ title, desc, delay }: { title: string; desc: string; delay: number }) {
+function FeatureCard({
+  title,
+  desc,
+  delay,
+  gradient,
+  Icon,
+}: {
+  title: string
+  desc: string
+  delay: number
+  gradient: string
+  Icon: () => ReactElement
+}) {
   const { ref, revealed } = useRevealOnScroll<HTMLDivElement>()
   return (
     <div
@@ -121,8 +174,11 @@ function FeatureCard({ title, desc, delay }: { title: string; desc: string; dela
       data-reveal
       data-revealed={revealed}
       style={{ transitionDelay: revealed ? `${delay}s` : '0s' }}
-      className="rounded-2xl p-4 text-center transition-transform duration-300 hover:-translate-y-1"
+      className="rounded-2xl border border-transparent p-5 text-center transition-all duration-300 hover:-translate-y-1 hover:border-neutral-200 hover:bg-white hover:shadow-lg dark:hover:border-neutral-800 dark:hover:bg-neutral-950"
     >
+      <div className={`mx-auto mb-4 flex size-12 items-center justify-center rounded-2xl bg-gradient-to-br shadow-md ${gradient}`}>
+        <Icon />
+      </div>
       <h3 className="mb-2 text-lg font-semibold text-neutral-900 dark:text-neutral-100">{title}</h3>
       <p className="text-sm text-neutral-600 dark:text-neutral-400">{desc}</p>
     </div>
@@ -138,14 +194,21 @@ function PricingCard({ name, price, highlight, delay }: { name: string; price: s
       data-reveal
       data-revealed={revealed}
       style={{ transitionDelay: revealed ? `${delay}s` : '0s' }}
-      className={`rounded-2xl border p-6 text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${
+      className={`relative rounded-2xl border p-6 text-center transition-all duration-300 hover:-translate-y-1.5 ${
         highlight
-          ? 'border-brand-600 bg-brand-50 shadow-md dark:bg-brand-900/20'
-          : 'border-neutral-200 bg-white dark:border-neutral-800 dark:bg-neutral-900'
+          ? 'border-brand-500 bg-gradient-to-br from-brand-50 via-white to-brand-100 shadow-lg shadow-brand-200/50 hover:shadow-xl hover:shadow-brand-300/50 dark:from-brand-900/30 dark:via-neutral-900 dark:to-brand-900/10 dark:shadow-brand-900/30'
+          : 'border-neutral-200 bg-gradient-to-br from-white to-neutral-50 hover:shadow-lg dark:border-neutral-800 dark:from-neutral-900 dark:to-neutral-900/60'
       }`}
     >
+      {highlight && (
+        <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-brand-600 px-3 py-1 text-xs font-semibold text-white shadow-sm">
+          {t('landing.mostPopular')}
+        </span>
+      )}
       <p className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">{name}</p>
-      <p className="my-3 text-2xl font-bold text-brand-700 dark:text-brand-400">{price}</p>
+      <p className="my-3 bg-gradient-to-r from-brand-700 to-brand-500 bg-clip-text text-2xl font-bold text-transparent dark:from-brand-400 dark:to-brand-300">
+        {price}
+      </p>
       <Link to="/signup">
         <Button variant={highlight ? 'primary' : 'outline'} className="w-full">
           {t('landing.ctaSignup')}

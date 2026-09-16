@@ -93,7 +93,7 @@ export default function Overview() {
       </div>
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-        <Card>
+        <Card className="from-amber-50 to-orange-50 dark:from-amber-950/40 dark:to-orange-950/20">
           <CardBody className="flex items-center gap-4">
             <RingStat percent={ordersTodayPct} icon={<BagIcon />} colorFrom="#fde047" colorTo="#22c55e" />
             <div>
@@ -102,7 +102,7 @@ export default function Overview() {
             </div>
           </CardBody>
         </Card>
-        <Card>
+        <Card className="from-teal-50 to-sky-50 dark:from-teal-950/40 dark:to-sky-950/20">
           <CardBody className="flex items-center gap-4">
             <RingStat percent={revenueTodayPct} icon={<CoinIcon />} colorFrom="#5eead4" colorTo="#0ea5e9" />
             <div>
@@ -113,7 +113,7 @@ export default function Overview() {
             </div>
           </CardBody>
         </Card>
-        <Card>
+        <Card className="from-sky-50 to-indigo-50 dark:from-sky-950/40 dark:to-indigo-950/20">
           <CardBody className="flex items-center gap-4">
             <RingStat percent={restaurant.is_open ? 100 : 0} icon={<ShopIcon />} colorFrom="#7dd3fc" colorTo="#6366f1" />
             <div className="flex-1">
