@@ -177,9 +177,8 @@ export function DashboardLayout(): ReactNode {
                   <span className="font-brand text-2xl font-extrabold tracking-tight text-neutral-900 dark:text-neutral-100">BestellQuick</span>
                 </div>
                 <NavLinks onNavigate={() => setMobileOpen(false)} />
-                <div className="mt-3 flex items-center gap-1 px-1">
+                <div className="mt-3 px-1">
                   <LanguageToggle />
-                  <ThemeToggle />
                 </div>
               </div>
               <RestaurantFooter />
