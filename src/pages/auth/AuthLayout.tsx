@@ -17,7 +17,7 @@ export function AuthLayout({ title, children }: { title: string; children: React
             <LanguageToggle />
           </div>
         </div>
-        <div className="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm dark:border-neutral-800 dark:bg-neutral-900">
+        <div className="animate-fade-in-up rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm dark:border-neutral-800 dark:bg-neutral-900">
           <h1 className="mb-5 text-xl font-bold text-neutral-900 dark:text-neutral-100">{title}</h1>
           {children}
         </div>

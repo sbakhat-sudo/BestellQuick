@@ -1,6 +1,6 @@
 import { type FormEvent, type ReactNode, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { NavLink, Outlet, useNavigate } from 'react-router-dom'
+import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom'
 import clsx from 'clsx'
 import { useAuth } from '@/context/AuthContext'
 import { useCurrentRestaurant } from '@/context/RestaurantContext'
@@ -75,25 +75,12 @@ function SearchIcon() {
   )
 }
 
-function SettingsIcon() {
-  return (
-    <svg viewBox="0 0 20 20" fill="none" className="size-5" aria-hidden="true">
-      <circle cx="10" cy="10" r="2.5" stroke="currentColor" strokeWidth="1.5" />
-      <path
-        d="M10 2.5v2M10 15.5v2M17.5 10h-2M4.5 10h-2M15.36 4.64l-1.41 1.41M6.05 13.95l-1.41 1.41M15.36 15.36l-1.41-1.41M6.05 6.05L4.64 4.64"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-      />
-    </svg>
-  )
-}
-
 export function DashboardLayout(): ReactNode {
   const { t } = useTranslation()
   const { signOut } = useAuth()
   const restaurant = useCurrentRestaurant()
   const navigate = useNavigate()
+  const location = useLocation()
   const [mobileOpen, setMobileOpen] = useState(false)
   const [search, setSearch] = useState('')
 
@@ -141,13 +128,6 @@ export function DashboardLayout(): ReactNode {
 
         <div className="flex items-center gap-3">
           <ThemeToggle />
-          <NavLink
-            to="/dashboard/settings"
-            aria-label={t('nav.settings')}
-            className="rounded-full p-2 text-neutral-500 hover:bg-neutral-100 hover:text-neutral-700 dark:text-neutral-400 dark:hover:bg-neutral-800 dark:hover:text-neutral-100"
-          >
-            <SettingsIcon />
-          </NavLink>
           <LanguageToggle className="hidden sm:inline-flex" />
           <button
             type="button"
@@ -177,9 +157,8 @@ export function DashboardLayout(): ReactNode {
                   <span className="font-brand text-2xl font-extrabold tracking-tight text-neutral-900 dark:text-neutral-100">BestellQuick</span>
                 </div>
                 <NavLinks onNavigate={() => setMobileOpen(false)} />
-                <div className="mt-3 flex items-center gap-1 px-1">
+                <div className="mt-3 px-1">
                   <LanguageToggle />
-                  <ThemeToggle />
                 </div>
               </div>
               <RestaurantFooter />
@@ -187,7 +166,7 @@ export function DashboardLayout(): ReactNode {
           </div>
         )}
 
-        <main className="min-w-0 flex-1 p-4 sm:p-6">
+        <main key={location.pathname} className="animate-fade-in-up min-w-0 flex-1 p-4 sm:p-6">
           <Outlet />
         </main>
       </div>
