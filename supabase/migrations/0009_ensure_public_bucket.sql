@@ -1,4 +1,4 @@
--- Vite-Fait — ensure restaurant-assets bucket is actually public
+-- BestellQuick — ensure restaurant-assets bucket is actually public
 --
 -- 0004_storage.sql created the bucket with `insert ... on conflict (id) do
 -- nothing`, which is correct for a fresh project but is a no-op if the

@@ -1,4 +1,4 @@
--- Vite-Fait — simplify restaurant-assets storage policies
+-- BestellQuick — simplify restaurant-assets storage policies
 --
 -- The previous policies matched the path's first folder segment against
 -- restaurants.id via a JOIN back to restaurants (owner_user_id = auth.uid()).

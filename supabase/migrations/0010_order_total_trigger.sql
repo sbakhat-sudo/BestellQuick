@@ -1,4 +1,4 @@
--- Vite-Fait — defensive total_price recompute trigger on order_items
+-- BestellQuick — defensive total_price recompute trigger on order_items
 --
 -- create_order() (0002_functions.sql) already computes and stores
 -- orders.total_price atomically when an order is placed, so this trigger

@@ -8,7 +8,7 @@ interface ThemeContextValue {
 }
 
 const ThemeContext = createContext<ThemeContextValue | undefined>(undefined)
-const STORAGE_KEY = 'vite-fait-theme'
+const STORAGE_KEY = 'bestellquick-theme'
 
 function getInitialTheme(): Theme {
   const stored = localStorage.getItem(STORAGE_KEY)

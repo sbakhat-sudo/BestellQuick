@@ -26,7 +26,7 @@ i18n
     detection: {
       order: ['localStorage', 'navigator'],
       caches: ['localStorage'],
-      lookupLocalStorage: 'vite-fait_lang',
+      lookupLocalStorage: 'bestellquick_lang',
     },
   })
 
