@@ -12,6 +12,7 @@ import { RestaurantQrCode } from '@/components/dashboard/RestaurantQrCode'
 import { DeliveryDriversSection } from '@/components/delivery/DeliveryDriversSection'
 import { CommissionSettings } from '@/components/delivery/CommissionSettings'
 import { BillingSection } from '@/components/settings/BillingSection'
+import { WeeklyHoursSettings } from '@/components/settings/WeeklyHoursSettings'
 
 export default function Settings() {
   const { t } = useTranslation()
@@ -97,7 +98,14 @@ export default function Settings() {
           <h2 className="font-semibold text-neutral-900 dark:text-neutral-100">{t('settings.openClosedTitle')}</h2>
         </CardHeader>
         <CardBody className="flex items-center justify-between gap-4">
-          <p className="text-sm text-neutral-500 dark:text-neutral-400">{t('settings.openClosedDesc')}</p>
+          <div className="flex items-center gap-3">
+            <span
+              className={`flex size-2.5 shrink-0 rounded-full transition-colors duration-300 ${
+                restaurant.is_open ? 'animate-pulse bg-brand-500' : 'bg-red-400'
+              }`}
+            />
+            <p className="text-sm text-neutral-500 dark:text-neutral-400">{t('settings.openClosedDesc')}</p>
+          </div>
           <Toggle
             checked={restaurant.is_open}
             onChange={(checked) => updateRestaurant.mutate({ is_open: checked })}
@@ -106,6 +114,8 @@ export default function Settings() {
           />
         </CardBody>
       </Card>
+
+      <WeeklyHoursSettings />
 
       <Card>
         <CardHeader>
