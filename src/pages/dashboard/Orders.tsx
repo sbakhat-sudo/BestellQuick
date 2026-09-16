@@ -16,6 +16,7 @@ export default function Orders() {
   const [filter, setFilter] = useState<OrderStatus | 'all'>('all')
   const [searchParams, setSearchParams] = useSearchParams()
   const search = searchParams.get('q') ?? ''
+  const date = searchParams.get('date') ?? ''
 
   const filtered = useMemo(() => {
     if (!orders) return []
@@ -26,19 +27,46 @@ export default function Orders() {
         (o) => o.customer_name.toLowerCase().includes(query) || o.customer_phone.toLowerCase().includes(query),
       )
     }
+    if (date) {
+      list = list.filter((o) => o.created_at.slice(0, 10) === date)
+    }
     return list
-  }, [orders, filter, search])
+  }, [orders, filter, search, date])
 
   return (
     <div className="flex flex-col gap-6">
       <h1 className="text-2xl font-bold text-neutral-900">{t('orders.title')}</h1>
 
-      <Input
-        value={search}
-        onChange={(e) => setSearchParams(e.target.value ? { q: e.target.value } : {})}
-        placeholder={t('dashboard.overview.searchPlaceholder')}
-        className="max-w-sm"
-      />
+      <div className="flex flex-wrap items-center gap-3">
+        <Input
+          value={search}
+          onChange={(e) => {
+            const next = new URLSearchParams(searchParams)
+            if (e.target.value) next.set('q', e.target.value)
+            else next.delete('q')
+            setSearchParams(next)
+          }}
+          placeholder={t('dashboard.overview.searchPlaceholder')}
+          className="max-w-sm"
+        />
+        {date && (
+          <span className="flex items-center gap-2 rounded-full bg-neutral-100 px-3 py-1.5 text-sm font-medium text-neutral-700">
+            {new Date(date).toLocaleDateString()}
+            <button
+              type="button"
+              onClick={() => {
+                const next = new URLSearchParams(searchParams)
+                next.delete('date')
+                setSearchParams(next)
+              }}
+              className="text-neutral-500 hover:text-neutral-900"
+              aria-label={t('common.cancel')}
+            >
+              ×
+            </button>
+          </span>
+        )}
+      </div>
 
       <div className="flex flex-wrap gap-2">
         <button
