@@ -75,6 +75,17 @@ function SearchIcon() {
   )
 }
 
+function SidebarIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className="size-5" aria-hidden="true">
+      <rect x="3" y="4" width="18" height="16" rx="3" stroke="currentColor" strokeWidth="1.6" />
+      <path d="M9.5 4v16" stroke="currentColor" strokeWidth="1.6" />
+    </svg>
+  )
+}
+
+const SIDEBAR_STORAGE_KEY = 'bestellquick-sidebar-open'
+
 export function DashboardLayout(): ReactNode {
   const { t } = useTranslation()
   const { signOut } = useAuth()
@@ -83,6 +94,15 @@ export function DashboardLayout(): ReactNode {
   const location = useLocation()
   const [mobileOpen, setMobileOpen] = useState(false)
   const [search, setSearch] = useState('')
+  const [sidebarOpen, setSidebarOpen] = useState(() => localStorage.getItem(SIDEBAR_STORAGE_KEY) !== 'false')
+
+  const toggleSidebar = () => {
+    setSidebarOpen((open) => {
+      const next = !open
+      localStorage.setItem(SIDEBAR_STORAGE_KEY, String(next))
+      return next
+    })
+  }
 
   const onSearchSubmit = (e: FormEvent) => {
     e.preventDefault()
@@ -101,6 +121,15 @@ export function DashboardLayout(): ReactNode {
             onClick={() => setMobileOpen((v) => !v)}
           >
             ☰
+          </button>
+          <button
+            type="button"
+            className="hidden rounded-lg p-2 text-neutral-500 transition-colors hover:bg-neutral-100 hover:text-neutral-700 md:inline-flex dark:text-neutral-400 dark:hover:bg-neutral-800 dark:hover:text-neutral-100"
+            aria-label={t('common.toggleSidebar')}
+            aria-pressed={sidebarOpen}
+            onClick={toggleSidebar}
+          >
+            <SidebarIcon />
           </button>
           <div className="flex items-center gap-1.5">
             <LogoMark />
@@ -140,9 +169,18 @@ export function DashboardLayout(): ReactNode {
       </header>
 
       <div className="mx-auto flex max-w-7xl">
-        <aside className="sticky top-[57px] hidden h-[calc(100svh-57px)] w-56 shrink-0 flex-col justify-between border-r border-neutral-200 bg-white p-3 md:flex dark:border-neutral-800 dark:bg-neutral-900">
-          <NavLinks />
-          <RestaurantFooter />
+        <aside
+          className={clsx(
+            'sticky top-[57px] hidden h-[calc(100svh-57px)] shrink-0 flex-col justify-between overflow-hidden border-neutral-200 bg-white transition-all duration-300 ease-out md:flex dark:border-neutral-800 dark:bg-neutral-900',
+            sidebarOpen ? 'w-56 border-r p-3 opacity-100' : 'w-0 border-r-0 p-0 opacity-0',
+          )}
+        >
+          <div className="w-56 shrink-0">
+            <NavLinks />
+          </div>
+          <div className="w-56 shrink-0">
+            <RestaurantFooter />
+          </div>
         </aside>
 
         {mobileOpen && (

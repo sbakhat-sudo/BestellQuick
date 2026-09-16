@@ -33,7 +33,8 @@
     "linkCopied": "Lien copié !",
     "logout": "Déconnexion",
     "switchToDark": "Passer au thème sombre",
-    "switchToLight": "Passer au thème clair"
+    "switchToLight": "Passer au thème clair",
+    "toggleSidebar": "Afficher/masquer le menu"
   },
   "nav": {
     "overview": "Vue d'ensemble",
