@@ -1,4 +1,4 @@
--- Vite-Fait — fixes for issues raised by Supabase's Security Advisor
+-- BestellQuick — fixes for issues raised by Supabase's Security Advisor
 --
 -- 1. set_updated_at() had no `search_path` pinned, which the linter
 --    flags because a mutable search_path on a trigger function is a

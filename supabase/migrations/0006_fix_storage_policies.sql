@@ -1,4 +1,4 @@
--- Vite-Fait — idempotent re-creation of the restaurant-assets storage
+-- BestellQuick — idempotent re-creation of the restaurant-assets storage
 -- policies. Safe to run multiple times: an earlier partial run of
 -- 0004_storage.sql (e.g. one that errored out before creating every
 -- policy) can leave the bucket in an inconsistent state where some
